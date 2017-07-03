@@ -1,0 +1,51 @@
+{
+  "name": "@arf/generator-spring",
+  "version": "0.0.1",
+  "description": "Spring code generation and modification",
+  "license": "Apache-2.0",
+  "files": [
+    "generators"
+  ],
+  "dependencies": {
+    "handlebars": "^4.0.0",
+    "yeoman-generator": "^1.0.0",
+    "extend": "^3.0.1",
+    "@arf/java-common": "^0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "yeoman-assert": "^2.2.2",
+    "yeoman-test": "^1.6.0",
+    "istanbul": "^0.4.5",
+    "standard-version": "^4.0.0"
+  },
+  "scripts": {
+    "test": "mocha test/unit/*",
+    "testint": "mocha test/integration/*",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/unit/*",
+    "coverageint": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/integration/*",
+    "istanbul": "./node_modules/istanbul/lib/cli.js",
+    "prerelease": "npm test && npm run testint",
+    "release": "standard-version"
+  },
+  "publishConfig": {
+    "registry": "https://npm-registry.whitewater.ibm.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.ibm.com:arf/java-codegen-spring"
+  },
+  "keywords": [
+    "arf",
+    "codegen",
+    "yeoman",
+    "generator",
+    "YaaS",
+    "java",
+    "Spring"
+  ],
+  "contributors": [
+    "Adam Pilkington",
+    "Kate Stanley"
+  ]
+}
