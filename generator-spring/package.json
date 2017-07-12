@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Spring code generation and modification",
   "license": "Apache-2.0",
+  "main": "index.js",
   "files": [
     "generators"
   ],

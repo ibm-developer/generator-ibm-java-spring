@@ -53,8 +53,8 @@ Extension.prototype.getQuestions = function() {
     name    : 'createType',
     message : 'What type of source do you want to generate?',
     choices : [{
-      name : 'Pic\'n\'Mix : pick from a list of technologies',
-      value : 'microservice',
+      name : 'Basic microservice',
+      value : 'microservice/spring',
       short : 'A Spring based microservice'
     }]},{
       when    : this.show.bind(this),
@@ -95,11 +95,7 @@ Extension.prototype.setContext = function(ctx) {
 }
 
 Extension.prototype.afterPrompt = function(answers, config) {
-  if(this.context) {
-    this.context.conf.apply(answers);
-  } else {
-    config.apply(answers);
-  }
+  this.context.conf.overwrite(answers);
 }
 
 module.exports = exports = Extension;

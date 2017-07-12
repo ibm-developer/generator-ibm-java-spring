@@ -20,7 +20,6 @@ var fspath = require('path');
 var fs = require('fs');
 var extend = require('extend');
 
-
 module.exports = class extends Generator {
 
   constructor(args, opts) {
@@ -29,7 +28,6 @@ module.exports = class extends Generator {
     this.logger.writeToLog("Spring Generator context", opts.context);
     var ext = this.promptmgr.add(require('../prompts/spring.js'));
     ext.setContext(opts.context);
-    this.patterns.push('picnmix');
   }
 
   initializing() {
