@@ -9,7 +9,7 @@ You can see builds for all branches here https://travis.ibm.com/arf/java-codegen
 This is a yeoman generator that will create Java code for you.
 
 * It is published as a node module in the IBM NPM repository : https://npm.whitewater.ibm.com
-* The node module is published as @arf/generator-liberty (note that it's [scoped](https://docs.npmjs.com/misc/scope#installing-scoped-packages) to @arf), see the [step above](https://github.ibm.com/Whitewater/npm) as to
+* The node module is published as @arf/generator-spring (note that it's [scoped](https://docs.npmjs.com/misc/scope#installing-scoped-packages) to @arf), see the [step above](https://github.ibm.com/Whitewater/npm) as to
 why this module is scoped.
 
 The code coverage for the latest version of the generator hosted in the [IBM NPM repository](https://npm.whitewater.ibm.com/package/@arf/generator-spring) can be viewed in GitHub Pages. There are separate reports for [unit test coverage](https://pages.github.ibm.com/arf/java-codegen-spring/cc/unit/lcov-report/index.html) and [integration test coverage](https://pages.github.ibm.com/arf/java-codegen-spring/cc/int/lcov-report/index.html).
