@@ -18,8 +18,8 @@
 
 var assert = require('assert');
 
-describe('A unit test', function() {
-  it('should be possible to test something', function(){
+describe('Spring generator unit test', function() {
+  it('should be invoked by the main generator when running unit tests', function(){
     //some test code goes here
   });
 });
