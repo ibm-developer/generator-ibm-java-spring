@@ -19,15 +19,22 @@ var Handlebars = require('handlebars');
 var fspath = require('path');
 var fs = require('fs');
 var extend = require('extend');
+const Defaults = require('../../lib/defaults');
+
+var defaults = new Defaults();
 
 module.exports = class extends Generator {
 
   constructor(args, opts) {
     super(args, opts);
+    if(!opts.context) throw "This generator cannot be run standalone, only composed with.";
+    defaults.setOptions(this);
     extend(this, opts.context);   //inject the objects and functions directly into 'this' to make things easy
     this.logger.writeToLog("Spring Generator context", opts.context);
     var ext = this.promptmgr.add(require('../prompts/spring.js'));
     ext.setContext(opts.context);
+    this.conf.addMissing(opts, defaults);
+    this.logger.writeToLog("Spring Generator conf (final)", this.conf);
   }
 
   initializing() {

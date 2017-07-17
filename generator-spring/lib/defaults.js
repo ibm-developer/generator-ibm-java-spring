@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-'use strict'
+//module for storing default configuration values
 
-module.exports = {
-  integrationAsserts : {
-    spring : require('./lib/assert.spring')
-  }
+const defaultModule = require('@arf/java-common').defaults;
+
+//defaults to be used by the main generator
+const DEFAULTS = {
 };
+
+module.exports = class extends defaultModule {
+  constructor() {
+    super(DEFAULTS);
+  }
+}
