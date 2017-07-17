@@ -1,7 +1,5 @@
 {
   "excludes" : [
-    ".classpath",
-    ".project",
     {{#has buildType 'maven'}}
     "build.gradle",
     "settings.gradle",
@@ -10,10 +8,13 @@
     {{#has buildType 'gradle'}}
     "pom.xml",
     {{/has}}
+    ".classpath",
+    ".project"
   ],
   "excludesDir" : [
     "target",
     ".settings",
     "build"
-  ]
+  ],
+  "composition" : []
 }

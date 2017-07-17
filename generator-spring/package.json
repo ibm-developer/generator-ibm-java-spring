@@ -1,17 +1,18 @@
 {
   "name": "@arf/generator-spring",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Spring code generation and modification",
   "license": "Apache-2.0",
   "main": "index.js",
   "files": [
-    "generators"
+    "generators",
+    "lib"
   ],
   "dependencies": {
     "handlebars": "^4.0.0",
     "yeoman-generator": "^1.0.0",
     "extend": "^3.0.1",
-    "@arf/java-common": "2.0.1"
+    "@arf/java-common": "2.0.2"
   },
   "devDependencies": {
     "mocha": "^3.2.0",
@@ -23,6 +24,7 @@
   "scripts": {
     "test": "mocha test/unit/*",
     "testint": "mocha test/integration/*",
+    "testspring": "mocha test/integration/generator.spring.*",
     "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/unit/*",
     "coverageint": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/integration/*",
     "istanbul": "./node_modules/istanbul/lib/cli.js",

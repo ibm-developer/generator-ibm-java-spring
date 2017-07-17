@@ -14,23 +14,17 @@
  * limitations under the License.
  */
 
-/**
- * Tests the basic generator
- */
-'use strict';
-var path = require('path');
-var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
+'use strict'
 
-before(function() {
-  return helpers.run(path.join( __dirname, '../../generators/app'))
-    .withOptions({})
-    .withPrompts({})
-    .toPromise();
-});
+//mock a prompt manager object
 
-describe('Spring generator : basic integration test', function () {
-  it('should test that file.txt was produced', function () {
-    assert.file('file.txt');
-  });
-});
+function PromptMgr() {
+
+  this.add = function() {
+    return {
+      setContext : () =>{}
+    }
+  };
+}
+
+module.exports = exports = PromptMgr;
