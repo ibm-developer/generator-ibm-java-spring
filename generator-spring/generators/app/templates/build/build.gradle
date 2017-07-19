@@ -13,6 +13,13 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
+ext {
+    appName = '{{appName}}'
+    {{#each properties}}
+    {{this.name}} = {{{this.value}}}
+    {{/each}}
+}
+
 repositories {
     mavenCentral()
 }
