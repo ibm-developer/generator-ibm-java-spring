@@ -36,7 +36,7 @@ jar {
 
 dependencies {
     {{#each dependencies}}
-    {{#if scope}}{{this.scope}}Compile{{else}}compile{{/if}} ('{{this.groupId}}:{{this.artifactId}}:{{this.version}}') {{#if exclusions}}{
+    {{#if scope}}{{this.scope}}Compile{{else}}compile{{/if}} ('{{this.groupId}}:{{this.artifactId}}{{#if version}}:{{this.version}}{{/if}}') {{#if exclusions}}{
         {{#each exclusions}}
         exclude group: '{{this.groupId}}', module: '{{this.artifactId}}'
         {{/each}}

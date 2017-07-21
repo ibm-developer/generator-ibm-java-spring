@@ -33,7 +33,7 @@ const FRAMEWORK = 'spring';
 
 class Options extends AssertSpring {
 
-  constructor(buildType, createType) {
+  constructor(buildType, createType, envEntries) {
     super();
     this.conf = {
       headless :  "true",
@@ -41,6 +41,7 @@ class Options extends AssertSpring {
       buildType : buildType,
       createType : createType,
       promptType : 'prompt:spring',
+      envEntries : envEntries,
       appName : APPNAME,
       groupId : GROUPID,
       artifactId : ARTIFACTID,
@@ -61,15 +62,19 @@ class Options extends AssertSpring {
 }
 
 const buildTypes = ['gradle', 'maven'];
+const envEntries = [{name: 'envName', value : 'envValue'}];
 
 describe('java spring generator : Spring server integration test', function () {
 
   buildTypes.forEach(buildType => {
     describe('Generates server configuration for ' + buildType, function () {
-      var options = new Options(buildType, 'build');
+      var options = new Options(buildType, 'config', envEntries);
       before(options.before.bind(options));
       options.assertAllFiles(true);
       options.assertVersion(buildType);
+      envEntries.forEach(entry => {
+          options.assertEnv(true, entry.name, entry.value);
+        });
     });
   })
 

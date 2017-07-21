@@ -23,6 +23,7 @@ const assert = require('yeoman-assert');
 const tests = require('@arf/java-common');
 
 const SPRING_VERSION = '1.5.4.RELEASE';   //current Spring version to check for
+const SERVER_ENV = 'src/main/resources/application-local.properties';
 
 //handy function for checking both existence and non-existence
 function getCheck(exists) {
@@ -42,8 +43,8 @@ function getBuildCheck(exists, buildType) {
 function AssertSpring() {
   this.assertAllFiles = function(exists) {
     var check = getCheck(exists);
-    it(check.desc + 'server specific files', function() {
-      //put server specific file checks in here
+    it(check.desc + 'server specific files - application-local.properties', function() {
+      check.file(SERVER_ENV);
     }); 
   }
 
@@ -61,6 +62,13 @@ function AssertSpring() {
         var regex = new RegExp(content);
         check.content(regex);
       }
+    });
+  }
+
+  this.assertEnv = function(exists, name, value) {
+    var check = getCheck(exists);
+    it(check.desc + 'an application-local.properties entry for ' + name + " = " + value, function() {
+      check.content(SERVER_ENV, name + '="' + value + '"');
     });
   }
 }
