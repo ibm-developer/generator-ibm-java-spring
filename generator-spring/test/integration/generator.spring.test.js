@@ -33,7 +33,7 @@ const FRAMEWORK = 'spring';
 
 class Options extends AssertSpring {
 
-  constructor(buildType, createType, envEntries) {
+  constructor(buildType, createType, envEntries, artifactId) {
     super();
     this.conf = {
       headless :  "true",
@@ -44,7 +44,7 @@ class Options extends AssertSpring {
       envEntries : envEntries,
       appName : APPNAME,
       groupId : GROUPID,
-      artifactId : ARTIFACTID,
+      artifactId : artifactId,
       version : VERSION
     }
     var ctx = new common.context('test', this.conf, new MockPromptMgr());
@@ -68,7 +68,7 @@ describe('java spring generator : Spring server integration test', function () {
 
   buildTypes.forEach(buildType => {
     describe('Generates server configuration for ' + buildType, function () {
-      var options = new Options(buildType, 'config', envEntries);
+      var options = new Options(buildType, 'config', envEntries, ARTIFACTID);
       before(options.before.bind(options));
       options.assertAllFiles(true);
       options.assertVersion(buildType);
@@ -76,6 +76,20 @@ describe('java spring generator : Spring server integration test', function () {
           options.assertEnv(true, entry.name, entry.value);
         });
     });
+
+    describe('Check artifact id for ' + buildType, function () {
+      var options = new Options(buildType, 'config', envEntries, ARTIFACTID);
+      before(options.before.bind(options));
+      options.assertArtifactID(buildType, options.conf.artifactId);
+    });
+
+    describe('Check appName overrides artifact id for ' + buildType, function () {
+      var options = new Options(buildType, 'config', envEntries, undefined);
+      before(options.before.bind(options));
+      options.assertArtifactID(buildType, options.conf.appName);
+    });
   })
 
 });
+
+
