@@ -6,9 +6,9 @@ cd ./production
 git clone git@github.ibm.com:arf/java-codegen-spring.git
 cd ./java-codegen-spring/generator-spring
 npm install --only=production
-npm install @ibm/osc-cli -g
+npm install @wicked/cli -g
 echo "Running scan"
-osc-cli -s . -o -u travisci@travis.ibm.com
+wicked-cli -s . -u travisci@travis.ibm.com
 cd $WORKING_DIR
 echo "Copying scan results file to ../docs"
-cp ./production/java-codegen-spring/generator-spring/generator-spring_scanresults* ../docs/scan
+cp ./production/java-codegen-spring/generator-spring/generator-spring_scan-results/* ../docs/scan
