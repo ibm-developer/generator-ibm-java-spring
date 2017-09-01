@@ -113,7 +113,8 @@ var getServerSDKAsync = function(sdkName, generatedID) {
   // Use the non-async version of request.get() here because
   // we are going to use .pipe() to stream the data to disk
   return new Promise((resolve, reject) => {
-    var tempDir = fs.mkdtempSync(os.tmpDir());
+    const { sep } = require('path');
+    var tempDir = fs.mkdtempSync(os.tmpDir() + sep);
     logger.writeToLog(`starting server SDK download and unzip for ${sdkName} from ${serverDownloadURL} to ${tempDir}`)
     request.get({
       headers: { 'Accept': 'application/zip' },
