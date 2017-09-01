@@ -18,6 +18,7 @@
 
 module.exports = {
   integrationAsserts : {
-    spring : require('./lib/assert.spring')
+    spring : require('./lib/assert.spring'),
+    openapi : require('./lib/assert.openapi')
   }
 };
