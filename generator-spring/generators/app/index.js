@@ -20,6 +20,7 @@ var fspath = require('path');
 var fs = require('fs');
 var extend = require('extend');
 const Defaults = require('../../lib/defaults');
+const OpenApi = require('../../lib/openapi');
 
 var defaults = new Defaults();
 
@@ -47,9 +48,20 @@ module.exports = class extends Generator {
 
   configuring() {
     this.configure(this);
+    this.openApiDir = undefined;
+    if(this.conf.bluemix && this.conf.bluemix.openApiServers) {
+      var doc = this.conf.bluemix.openApiServers[0];
+      return OpenApi.generate(doc.spec, this.logger)
+        .then(sdk => {
+          this.openApiDir = sdk;
+        });
+    }
   }
 
   writing() {
+    if(this.openApiDir) {
+      OpenApi.writeFiles(this.openApiDir, this);
+    }
     return this.defaultWriter(this);   //use the default writer supplied by the context.
   }
 
