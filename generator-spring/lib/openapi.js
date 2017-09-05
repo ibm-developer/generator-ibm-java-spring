@@ -25,7 +25,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const log = require('@arf/java-common').log;
-Promise.promisifyAll(request)
+Promise.promisifyAll(request);
 
 const sdkGenURL = 'https://mobilesdkgen.stage1.ng.bluemix.net/sdkgen/api/generator/';
 const sdkGenCheckDelay = 3000;

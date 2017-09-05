@@ -35,6 +35,7 @@ module.exports = class extends Generator {
     var ext = this.promptmgr.add(require('../prompts/spring.js'));
     ext.setContext(opts.context);
     this.conf.addMissing(opts, defaults);
+    this.openApiDir = undefined;
     this.logger.writeToLog("Spring Generator conf (final)", this.conf);
   }
 
@@ -48,10 +49,9 @@ module.exports = class extends Generator {
 
   configuring() {
     this.configure(this);
-    this.openApiDir = undefined;
     if(this.conf.bluemix && this.conf.bluemix.openApiServers) {
       var doc = this.conf.bluemix.openApiServers[0];
-      return OpenApi.generate(doc.spec, this.logger)
+      return OpenApi.generate(doc.spec)
         .then(sdk => {
           this.openApiDir = sdk;
         });
