@@ -51,7 +51,7 @@ module.exports = class extends Generator {
     this.configure(this);
     if(this.conf.bluemix && this.conf.bluemix.openApiServers && this.conf.bluemix.backendPlatform == 'SPRING') {
       var doc = this.conf.bluemix.openApiServers[0];
-      return OpenApi.generate(doc.spec)
+      return OpenApi.generate(doc.spec, this.logger)
         .then(sdk => {
           this.openApiDir = sdk;
         });
