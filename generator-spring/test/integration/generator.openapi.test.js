@@ -25,6 +25,7 @@ const MockPromptMgr = require('../mocks/mock.promptmgr');
 const common = require('@arf/java-common');
 const Context = common.context;
 const openapidoc = require('../resources/basicswagger.json');
+const openapidoc1 = require('../resources/basicswagger1.json');
 
 const ARTIFACTID = 'artifact.0.1';
 const GROUPID = 'test.group';
@@ -74,7 +75,7 @@ describe('java spring generator : Spring generation integration test', function 
       }
       var options = new Options(buildType, 'basic/spring');
       before(options.before.bind(options));
-      options.assert(false);
+      options.assert(false, []);
     });
     describe('generate project with openapi code with buildType ' + buildType, function () {
       var bluemix = {
@@ -87,7 +88,53 @@ describe('java spring generator : Spring generation integration test', function 
       }
       var options = new Options(buildType, 'basic/spring', bluemix);
       before(options.before.bind(options));
-      options.assert(true);
+      options.assert(true, ['example']);
+    });
+    describe('generate project with two identical openapi code docs with buildType ' + buildType, function () {
+      var bluemix = {
+          "backendPlatform" : "SPRING",
+          "openApiServers" : [
+              {
+                  "spec" : JSON.stringify(openapidoc)
+              },
+              {
+                  "spec" : JSON.stringify(openapidoc)
+              }
+          ]
+      }
+      var options = new Options(buildType, 'basic/spring', bluemix);
+      before(options.before.bind(options));
+      options.assert(true, ['example']);
+    });
+    describe('generate project with two openapi code docs with buildType ' + buildType, function () {
+      var bluemix = {
+          "backendPlatform" : "SPRING",
+          "openApiServers" : [
+              {
+                  "spec" : JSON.stringify(openapidoc1)
+              }
+          ]
+      }
+      var options = new Options(buildType, 'basic/spring', bluemix);
+      before(options.before.bind(options));
+      options.assert(true, ['example1']);
+      
+    });
+    describe('generate project with two different openapi code docs with buildType ' + buildType, function () {
+      var bluemix = {
+          "backendPlatform" : "SPRING",
+          "openApiServers" : [
+              {
+                  "spec" : JSON.stringify(openapidoc)
+              },
+              {
+                  "spec" : JSON.stringify(openapidoc1)
+              }
+          ]
+      }
+      var options = new Options(buildType, 'basic/spring', bluemix);
+      before(options.before.bind(options));
+      options.assert(true, ['example', 'example1']);
     });
   });
 })

@@ -21,39 +21,59 @@
 
 const assert = require('yeoman-assert');
 const example = require('../test/resources/basicswagger.json');
+const example1 = require('../test/resources/basicswagger1.json');
 
 function AssertOpenApi() {
-    this.assert = function(exists) {
+    this.assert = function(exists, examples) {
         var check = exists ? assert.file : assert.noFile;
-        var desc = exists ? 'creates openapi files' : 'does not create openapi files';
-        it(desc, function() {
+        var desc = exists ? 'creates ' : 'does not create ';
+        it(desc + 'core openapi files', function() {
             check([
                 'src/main/java/io/swagger/Swagger2SpringBoot.java',
                 'src/main/java/io/swagger/RFC3339DateFormat.java',
-                'src/main/java/io/swagger/model/User.java',
-                'src/main/java/io/swagger/model/Tag.java',
-                'src/main/java/io/swagger/model/Pet.java',
-                'src/main/java/io/swagger/model/Order.java',
-                'src/main/java/io/swagger/model/ModelApiResponse.java',
-                'src/main/java/io/swagger/model/Category.java',
                 'src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java',
                 'src/main/java/io/swagger/configuration/HomeController.java',
-                'src/main/java/io/swagger/api/UserApiController.java',
-                'src/main/java/io/swagger/api/UserApi.java',
-                'src/main/java/io/swagger/api/StoreApiController.java',
-                'src/main/java/io/swagger/api/StoreApi.java',
-                'src/main/java/io/swagger/api/PetApiController.java',
-                'src/main/java/io/swagger/api/PetApi.java',
                 'src/main/java/io/swagger/api/NotFoundException.java',
                 'src/main/java/io/swagger/api/ApiResponseMessage.java',
                 'src/main/java/io/swagger/api/ApiOriginFilter.java',
                 'src/main/java/io/swagger/api/ApiException.java'
             ])
         });
+        if(examples.includes('example')) {
+            it(desc + 'example openapi files', function() {
+                check([
+                    'src/main/java/io/swagger/model/User.java',
+                    'src/main/java/io/swagger/model/Tag.java',
+                    'src/main/java/io/swagger/model/Pet.java',
+                    'src/main/java/io/swagger/model/Order.java',
+                    'src/main/java/io/swagger/model/ModelApiResponse.java',
+                    'src/main/java/io/swagger/model/Category.java',
+                    'src/main/java/io/swagger/api/UserApiController.java',
+                    'src/main/java/io/swagger/api/UserApi.java',
+                    'src/main/java/io/swagger/api/StoreApiController.java',
+                    'src/main/java/io/swagger/api/StoreApi.java',
+                    'src/main/java/io/swagger/api/PetApiController.java',
+                    'src/main/java/io/swagger/api/PetApi.java',
+                ])
+            });
+        }
+        if(examples.includes('example1')) {
+            it(desc + 'example1 openapi files', function() {
+                check([
+                    'src/main/java/io/swagger/model/Pet1.java',
+                    'src/main/java/io/swagger/api/Pets1ApiController.java',
+                    'src/main/java/io/swagger/api/Pets1Api.java',
+                ])
+            });
+        }
     }
 
     this.getExample = function() {
-        return example;
+        return {name: 'example', value: example};
+    }
+
+    this.getExample1 = function() {
+        return {name: 'example1', value: example1};
     }
 }
 
