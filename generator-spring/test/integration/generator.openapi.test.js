@@ -69,12 +69,16 @@ describe('java spring generator : Spring generation integration test', function 
 
   buildTypes.forEach(buildType => {
     describe('generate project without openapi code with buildType ' + buildType, function () {
+      var bluemix = {
+        "backendPlatform" : "SPRING"
+      }
       var options = new Options(buildType, 'basic/spring');
       before(options.before.bind(options));
       options.assert(false);
     });
     describe('generate project with openapi code with buildType ' + buildType, function () {
       var bluemix = {
+          "backendPlatform" : "SPRING",
           "openApiServers" : [
               {
                   "spec" : JSON.stringify(openapidoc)

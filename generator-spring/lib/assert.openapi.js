@@ -20,6 +20,7 @@
 'use strict';
 
 const assert = require('yeoman-assert');
+const example = require('../test/resources/basicswagger.json');
 
 function AssertOpenApi() {
     this.assert = function(exists) {
@@ -49,6 +50,10 @@ function AssertOpenApi() {
                 'src/main/java/io/swagger/api/ApiException.java'
             ])
         });
+    }
+
+    this.getExample = function() {
+        return example;
     }
 }
 
