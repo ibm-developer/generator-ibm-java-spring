@@ -66,7 +66,7 @@ class Options extends AssertOpenApi {
 const buildTypes = ['gradle', 'maven'];
 
 describe('java spring generator : Spring generation integration test', function () {
-  this.timeout(25000);
+  this.timeout(60000);
 
   buildTypes.forEach(buildType => {
     describe('generate project without openapi code with buildType ' + buildType, function () {
