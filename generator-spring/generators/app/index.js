@@ -35,6 +35,7 @@ module.exports = class extends Generator {
     var ext = this.promptmgr.add(require('../prompts/spring.js'));
     ext.setContext(opts.context);
     this.conf.addMissing(opts, defaults);
+    this.openApiDir = [];
     this.logger.writeToLog("Spring Generator conf (final)", this.conf);
   }
 
@@ -48,18 +49,16 @@ module.exports = class extends Generator {
 
   configuring() {
     this.configure(this);
-    this.openApiDir = undefined;
-    if(this.conf.bluemix && this.conf.bluemix.openApiServers) {
-      var doc = this.conf.bluemix.openApiServers[0];
-      return OpenApi.generate(doc.spec, this.logger)
-        .then(sdk => {
-          this.openApiDir = sdk;
+    if(this.conf.bluemix && this.conf.bluemix.openApiServers && this.conf.bluemix.backendPlatform == 'SPRING') {
+      return OpenApi.generate(this.conf.bluemix.openApiServers, this.logger)
+        .then(dir => {
+          this.openApiDir = dir
         });
     }
   }
 
   writing() {
-    if(this.openApiDir) {
+    if(this.openApiDir.length > 0) {
       OpenApi.writeFiles(this.openApiDir, this);
     }
     return this.defaultWriter(this);   //use the default writer supplied by the context.

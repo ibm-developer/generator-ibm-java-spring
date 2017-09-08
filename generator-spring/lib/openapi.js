@@ -25,16 +25,33 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const log = require('@arf/java-common').log;
-Promise.promisifyAll(request)
+Promise.promisifyAll(request);
 
 const sdkGenURL = 'https://mobilesdkgen.stage1.ng.bluemix.net/sdkgen/api/generator/';
 const sdkGenCheckDelay = 3000;
 
 var logger = log;
 
-var generate = function(doc, parentLogger) {
+var generate = function(docs, parentLogger) {
     logger = parentLogger || log;
     logger.writeToLog('Spring Generator generating code from open api document');
+    var openApiDir = [];
+    var p = new Promise((resolve, reject) => {
+        var i = 0;
+        docs.forEach(doc => {
+            generateFromDoc(doc.spec)
+            .then(sdk => {
+                openApiDir.push(sdk);
+                if (++i === docs.length) {
+                resolve(openApiDir);
+                }
+            });
+        });
+    });
+    return p;
+}
+
+var generateFromDoc = function(doc) {
     return performSDKGenerationAsync('testSpringSDK', 'server_java_spring_boot', doc)
         .then(generatedID => {
             logger.writeToLog('Spring Generator generated code from open api document with id ' + generatedID);
@@ -42,8 +59,10 @@ var generate = function(doc, parentLogger) {
         });
 }
 
-var writeFiles = function(sdk, generator) {
-    generator.fs.copy(path.join(sdk.tempDir, 'generated-code', 'javaSpring', 'src'), generator.destinationPath('src'));
+var writeFiles = function(dirs, generator) {
+    dirs.forEach(sdk => {
+        generator.fs.copy(path.join(sdk.tempDir, 'generated-code', 'javaSpring', 'src'), generator.destinationPath('src'));
+    });
 }
 
 var performSDKGenerationAsync = function (sdkName, sdkType, fileContent) {
