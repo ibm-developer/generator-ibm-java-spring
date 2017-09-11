@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.1"></a>
+## [0.4.1](https://github.ibm.com/arf/java-codegen-spring/compare/v0.4.0...v0.4.1) (2017-09-11)
+
+
+### Bug Fixes
+
+* **templates:** Move open api resources to resources folder ([4c0b809](https://github.ibm.com/arf/java-codegen-spring/commit/4c0b809))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.ibm.com/arf/java-codegen-spring/compare/v0.3.1...v0.4.0) (2017-09-08)
 
