@@ -6,7 +6,8 @@
   "main": "index.js",
   "files": [
     "generators",
-    "lib"
+    "lib",
+    "resources"
   ],
   "dependencies": {
     "handlebars": "^4.0.0",
