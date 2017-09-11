@@ -20,8 +20,8 @@
 'use strict';
 
 const assert = require('yeoman-assert');
-const example = require('../test/resources/basicswagger.json');
-const example1 = require('../test/resources/basicswagger1.json');
+const example = require('../resources/openapi/basicswagger.json');
+const example1 = require('../resources/openapi/basicswagger1.json');
 
 function AssertOpenApi() {
     this.assert = function(exists, examples) {

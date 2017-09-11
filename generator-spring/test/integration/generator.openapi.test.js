@@ -24,8 +24,8 @@ const AssertOpenApi = require('../../lib/assert.openapi');
 const MockPromptMgr = require('../mocks/mock.promptmgr');
 const common = require('@arf/java-common');
 const Context = common.context;
-const openapidoc = require('../resources/basicswagger.json');
-const openapidoc1 = require('../resources/basicswagger1.json');
+const openapidoc = require('../../resources/openapi/basicswagger.json');
+const openapidoc1 = require('../../resources/openapi/basicswagger1.json');
 
 const ARTIFACTID = 'artifact.0.1';
 const GROUPID = 'test.group';
