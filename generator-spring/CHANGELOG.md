@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.ibm.com/arf/java-codegen-spring/compare/v0.4.3...v0.5.0) (2017-09-15)
+
+
+### Features
+
+* **templates:** Add health templates and fix open api gen ([e9e8c5c](https://github.ibm.com/arf/java-codegen-spring/commit/e9e8c5c))
+
+
+
 <a name="0.4.3"></a>
 ## [0.4.3](https://github.ibm.com/arf/java-codegen-spring/compare/v0.4.2...v0.4.3) (2017-09-14)
 
