@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90% </span>
+        <span class="strong">95.35% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>18/20</span>
+        <span class='fraction'>41/43</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>18/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">71.43% </span>
+        <span class="strong">81.82% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/7</span>
+        <span class='fraction'>9/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90% </span>
+        <span class="strong">95.35% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>18/20</span>
+        <span class='fraction'>41/43</span>
       </div>
     </div>
   </div>
@@ -122,7 +122,39 @@
 77
 78
 79
-80</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,6 +175,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -151,6 +185,25 @@
 <span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,6 +243,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8×</span>
@@ -223,13 +287,34 @@
 'use strict';
 &nbsp;
 const assert = require('yeoman-assert');
+const tests = require('@arf/java-common');
 const example = require('../resources/openapi/basicswagger.json');
 const example1 = require('../resources/openapi/basicswagger1.json');
+const PROP_FILE = 'src/main/resources/application.properties';
 &nbsp;
 function AssertOpenApi() {
-    this.assert = function(exists, examples) {
+    this.assert = function(exists, examples, buildType) {
         var check = exists ? assert.file : assert.noFile;
+        var checkContents = exists ? assert.fileContent : assert.noFileContent;
         var desc = exists ? 'creates ' : 'does not create ';
+        var contentDesc = exists ? ' contains ' : ' does not contain ';
+        it(desc + 'SBApplication.java file', function() {
+            if(exists) {
+                assert.noFile('src/main/java/application/SBApplication.java');
+            } else {
+                assert.file('src/main/java/application/SBApplication.java');
+            }
+        });
+        it('check health endpoint file is generated', function() {
+            assert.file('src/main/java/application/rest/HealthEndpoint.java');
+        });
+        it('check health endpoint test is generated with correct content', function() {
+            if(exists) {
+                assert.fileContent('src/test/java/application/HealthEndpointTest.java', 'classes=io.swagger.Swagger2SpringBoot.class');
+            } else {
+                assert.noFileContent('src/test/java/application/HealthEndpointTest.java', 'classes=io.swagger.Swagger2SpringBoot.class');
+            }
+        });
         it(desc + 'core openapi files', function() {
             check([
                 'src/main/java/io/swagger/Swagger2SpringBoot.java',
@@ -269,6 +354,17 @@ function AssertOpenApi() {
                 ])
             });
         }
+&nbsp;
+        it('check ' + PROP_FILE + contentDesc + 'spring fox and spring jackson settings', function() {
+            checkContents(PROP_FILE, 'springfox.documentation.swagger.v2.path=/swagger/api');
+            checkContents(PROP_FILE, 'spring.jackson.date-format=io.swagger.RFC3339DateFormat');
+            checkContents(PROP_FILE, 'spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS=false');
+        });
+        var checkDependency = exists ? tests.test(buildType).assertDependency : tests.test(buildType).assertNoDependency;
+        checkDependency('compile', 'io.springfox', 'springfox-swagger2', '2.7.0');
+        checkDependency('compile', 'io.springfox', 'springfox-swagger-ui', '2.7.0');
+        checkDependency('compile', 'com.fasterxml.jackson.datatype', 'jackson-datatype-joda');
+        checkDependency('compile', 'javax.validation', 'validation-api');
     }
 &nbsp;
     this.getExample = <span class="fstat-no" title="function not covered" >function() {</span>
@@ -286,7 +382,7 @@ module.exports = exports = AssertOpenApi;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Sep 14 2017 10:07:21 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Sep 15 2017 13:53:52 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../prettify.js"></script>
