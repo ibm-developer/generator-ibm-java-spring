@@ -27,11 +27,11 @@ const PROP_FILE = 'src/main/resources/application.properties';
 
 function AssertOpenApi() {
     this.assert = function(exists, examples, buildType) {
-        this.assertHealthFiles();
+        this.assertHealthFiles(exists);
         this.assertCommon(exists, examples, buildType);
     }
 
-    this.assertHealthFiles = function() {
+    this.assertHealthFiles = function(exists) {
         it('check health endpoint file is generated', function() {
             assert.file('src/main/java/application/rest/HealthEndpoint.java');
         });
