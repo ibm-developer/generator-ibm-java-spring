@@ -20,6 +20,7 @@
 'use strict';
 const path = require('path');
 const helpers = require('yeoman-test');
+const assert = require('yeoman-assert');
 const AssertOpenApi = require('../../lib/assert.openapi');
 const MockPromptMgr = require('../mocks/mock.promptmgr');
 const common = require('@arf/java-common');
@@ -73,9 +74,9 @@ describe('java spring generator : Spring generation integration test', function 
       var bluemix = {
         "backendPlatform" : "SPRING"
       }
-      var options = new Options(buildType, 'basic/spring');
+      var options = new Options(buildType, 'health');
       before(options.before.bind(options));
-      options.assert(false, []);
+      options.assert(false, [], buildType);
     });
     describe('generate project with openapi code with buildType ' + buildType, function () {
       var bluemix = {
@@ -86,9 +87,9 @@ describe('java spring generator : Spring generation integration test', function 
               }
           ]
       }
-      var options = new Options(buildType, 'basic/spring', bluemix);
+      var options = new Options(buildType, 'health', bluemix);
       before(options.before.bind(options));
-      options.assert(true, ['example']);
+      options.assert(true, ['example'], buildType);
     });
     describe('generate project with two identical openapi code docs with buildType ' + buildType, function () {
       var bluemix = {
@@ -102,9 +103,9 @@ describe('java spring generator : Spring generation integration test', function 
               }
           ]
       }
-      var options = new Options(buildType, 'basic/spring', bluemix);
+      var options = new Options(buildType, 'health', bluemix);
       before(options.before.bind(options));
-      options.assert(true, ['example']);
+      options.assert(true, ['example'], buildType);
     });
     describe('generate project with two different openapi code docs with buildType ' + buildType, function () {
       var bluemix = {
@@ -118,9 +119,9 @@ describe('java spring generator : Spring generation integration test', function 
               }
           ]
       }
-      var options = new Options(buildType, 'basic/spring', bluemix);
+      var options = new Options(buildType, 'health', bluemix);
       before(options.before.bind(options));
-      options.assert(true, ['example', 'example1']);
+      options.assert(true, ['example', 'example1'], buildType);
     });
   });
 })
