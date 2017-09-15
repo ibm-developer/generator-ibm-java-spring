@@ -57,6 +57,16 @@ class Options extends AssertSpring {
         .withPrompts({})
         .toPromise();
     }
+
+    this.assertHealthFiles = function(buildType) {
+      it('creates Java src files for health endpoint', function() {
+        assert.file(['src/main/java/application/SBApplication.java', 'src/main/java/application/rest/HealthEndpoint.java',
+          'src/test/java/application/HealthEndpointTest.java']);
+      });
+      common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-starter-web');
+      common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-actuator');
+      common.test(buildType).assertDependency('test', 'org.springframework.boot', 'spring-boot-starter-test');
+    }
   }
 
 }
@@ -68,23 +78,24 @@ describe('java spring generator : Spring server integration test', function () {
 
   buildTypes.forEach(buildType => {
     describe('Generates server configuration for ' + buildType, function () {
-      var options = new Options(buildType, 'config', envEntries, ARTIFACTID);
+      var options = new Options(buildType, 'health', envEntries, ARTIFACTID);
       before(options.before.bind(options));
       options.assertAllFiles(true);
       options.assertVersion(buildType);
       envEntries.forEach(entry => {
           options.assertEnv(true, entry.name, entry.value);
         });
+      options.assertHealthFiles(buildType);
     });
 
     describe('Check artifact id for ' + buildType, function () {
-      var options = new Options(buildType, 'config', envEntries, ARTIFACTID);
+      var options = new Options(buildType, 'health', envEntries, ARTIFACTID);
       before(options.before.bind(options));
       options.assertArtifactID(buildType, options.conf.artifactId);
     });
 
     describe('Check appName overrides artifact id for ' + buildType, function () {
-      var options = new Options(buildType, 'config', envEntries, undefined);
+      var options = new Options(buildType, 'health', envEntries, undefined);
       before(options.before.bind(options));
       options.assertArtifactID(buildType, options.conf.appName);
     });

@@ -20,13 +20,34 @@
 'use strict';
 
 const assert = require('yeoman-assert');
+const tests = require('@arf/java-common');
 const example = require('../resources/openapi/basicswagger.json');
 const example1 = require('../resources/openapi/basicswagger1.json');
+const PROP_FILE = 'src/main/resources/application.properties';
 
 function AssertOpenApi() {
-    this.assert = function(exists, examples) {
+    this.assert = function(exists, examples, buildType) {
         var check = exists ? assert.file : assert.noFile;
+        var checkContents = exists ? assert.fileContent : assert.noFileContent;
         var desc = exists ? 'creates ' : 'does not create ';
+        var contentDesc = exists ? ' contains ' : ' does not contain ';
+        it(desc + 'SBApplication.java file', function() {
+            if(exists) {
+                assert.noFile('src/main/java/application/SBApplication.java');
+            } else {
+                assert.file('src/main/java/application/SBApplication.java');
+            }
+        });
+        it('check health endpoint file is generated', function() {
+            assert.file('src/main/java/application/rest/HealthEndpoint.java');
+        });
+        it('check health endpoint test is generated with correct content', function() {
+            if(exists) {
+                assert.fileContent('src/test/java/application/HealthEndpointTest.java', 'classes=io.swagger.Swagger2SpringBoot.class');
+            } else {
+                assert.noFileContent('src/test/java/application/HealthEndpointTest.java', 'classes=io.swagger.Swagger2SpringBoot.class');
+            }
+        });
         it(desc + 'core openapi files', function() {
             check([
                 'src/main/java/io/swagger/Swagger2SpringBoot.java',
@@ -66,6 +87,17 @@ function AssertOpenApi() {
                 ])
             });
         }
+
+        it('check ' + PROP_FILE + contentDesc + 'spring fox and spring jackson settings', function() {
+            checkContents(PROP_FILE, 'springfox.documentation.swagger.v2.path=/swagger/api');
+            checkContents(PROP_FILE, 'spring.jackson.date-format=io.swagger.RFC3339DateFormat');
+            checkContents(PROP_FILE, 'spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS=false');
+        });
+        var checkDependency = exists ? tests.test(buildType).assertDependency : tests.test(buildType).assertNoDependency;
+        checkDependency('compile', 'io.springfox', 'springfox-swagger2', '2.7.0');
+        checkDependency('compile', 'io.springfox', 'springfox-swagger-ui', '2.7.0');
+        checkDependency('compile', 'com.fasterxml.jackson.datatype', 'jackson-datatype-joda');
+        checkDependency('compile', 'javax.validation', 'validation-api');
     }
 
     this.getExample = function() {

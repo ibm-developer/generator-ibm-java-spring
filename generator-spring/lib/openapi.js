@@ -61,7 +61,7 @@ var generateFromDoc = function(doc) {
 
 var writeFiles = function(dirs, generator) {
     dirs.forEach(sdk => {
-        generator.fs.copy(path.join(sdk.tempDir, 'generated-code', 'javaSpring', 'src'), generator.destinationPath('src'));
+      generator.fs.copy(path.join(sdk.tempDir, 'generated-code', 'javaSpring', 'src'), generator.destinationPath('src'));
     });
 }
 
