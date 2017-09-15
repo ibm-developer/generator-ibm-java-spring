@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.1"></a>
+## [0.5.1](https://github.ibm.com/arf/java-codegen-spring/compare/v0.5.0...v0.5.1) (2017-09-15)
+
+
+### Performance Improvements
+
+* **test:** Refactor tests to allow selective invocation ([366419e](https://github.ibm.com/arf/java-codegen-spring/commit/366419e))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.ibm.com/arf/java-codegen-spring/compare/v0.4.3...v0.5.0) (2017-09-15)
 
