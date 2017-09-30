@@ -25,6 +25,7 @@ const tests = require('@arf/java-common');
 const SPRING_VERSION = '1.5.4.RELEASE';   //current Spring version to check for
 const LOCAL_APP_PROPS = 'src/main/resources/application-local.properties';
 const APP_PROPS = 'src/main/resources/application.properties';
+const CONTENT_ROOT = 'src/main/resources/public';   //where public web content is served from
 
 //handy function for checking both existence and non-existence
 function getCheck(exists) {
@@ -85,6 +86,13 @@ function AssertSpring() {
     var check = getCheck(exists);
     it(check.desc + 'an application-local.properties entry for ' + name + " = " + value, function() {
       check.content(LOCAL_APP_PROPS, name + '="' + value + '"');
+    });
+  }
+
+  this.assertContent = function(exists, path) {
+    var check = getCheck(exists);
+    it(check.desc + 'content at ' + path, function() {
+      check.file(CONTENT_ROOT + path);
     });
   }
 }

@@ -103,4 +103,15 @@ describe('java spring generator : Spring server integration test', function () {
 
 });
 
+describe('java spring generator : Spring server content test', function () {
+
+  describe('Check default content is generated', function () {
+    var options = new Options('maven', 'content', envEntries, ARTIFACTID);
+    before(options.before.bind(options));
+    options.assertContent(true, '/index.html');
+    options.assertContent(true, '/error/404.html');
+  });
+  
+
+});
 
