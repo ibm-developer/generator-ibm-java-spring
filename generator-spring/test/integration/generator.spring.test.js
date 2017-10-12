@@ -25,7 +25,7 @@ const AssertSpring = require('../../lib/assert.spring');
 const MockPromptMgr = require('../mocks/mock.promptmgr');
 const common = require('@arf/java-common');
 
-const ARTIFACTID = 'artifact.0.1';
+const ARTIFACTID = 'artifact';
 const GROUPID = 'test.group';
 const VERSION = '1.0.0';
 const APPNAME = 'testApp';
@@ -33,7 +33,7 @@ const FRAMEWORK = 'spring';
 
 class Options extends AssertSpring {
 
-  constructor(buildType, createType, envEntries, artifactId) {
+  constructor(buildType, createType, envEntries) {
     super();
     this.conf = {
       headless :  "true",
@@ -44,7 +44,7 @@ class Options extends AssertSpring {
       envEntries : envEntries,
       appName : APPNAME,
       groupId : GROUPID,
-      artifactId : artifactId,
+      artifactId : ARTIFACTID,
       version : VERSION
     }
     var ctx = new common.context('test', this.conf, new MockPromptMgr());
@@ -78,7 +78,7 @@ describe('java spring generator : Spring server integration test', function () {
 
   buildTypes.forEach(buildType => {
     describe('Generates server configuration for ' + buildType, function () {
-      var options = new Options(buildType, 'health', envEntries, ARTIFACTID);
+      var options = new Options(buildType, 'health', envEntries);
       before(options.before.bind(options));
       options.assertAllFiles(true);
       options.assertVersion(buildType);
@@ -89,16 +89,11 @@ describe('java spring generator : Spring server integration test', function () {
     });
 
     describe('Check artifact id for ' + buildType, function () {
-      var options = new Options(buildType, 'health', envEntries, ARTIFACTID);
+      var options = new Options(buildType, 'health', envEntries);
       before(options.before.bind(options));
       options.assertArtifactID(buildType, options.conf.artifactId);
     });
 
-    describe('Check appName overrides artifact id for ' + buildType, function () {
-      var options = new Options(buildType, 'health', envEntries, undefined);
-      before(options.before.bind(options));
-      options.assertArtifactID(buildType, options.conf.appName);
-    });
   })
 
 });
@@ -106,7 +101,7 @@ describe('java spring generator : Spring server integration test', function () {
 describe('java spring generator : Spring server content test', function () {
 
   describe('Check default content is generated', function () {
-    var options = new Options('maven', 'content', envEntries, ARTIFACTID);
+    var options = new Options('maven', 'content', envEntries);
     before(options.before.bind(options));
     options.assertContent(true, '/index.html');
     options.assertContent(true, '/error/404.html');
