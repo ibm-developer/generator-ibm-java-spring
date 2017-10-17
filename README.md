@@ -34,3 +34,5 @@ This is a sub generator and is intended to work with the main [Java code generat
 * Run `npm link` - this will configure your local node installation to resolve this generator from the local file system rather than the NPM registry.
 
 You will now be able to make changes locally and have them picked up when you run the main Java generator.
+
+Further information is available in the [Java Codegen documentation](https://pages.github.ibm.com/arf/java-codegen-devguide/spring/overview/)
