@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.ibm.com/arf/java-codegen-spring/compare/v0.7.0...v1.0.0) (2017-10-17)
+
+
+### Features
+
+* **user:** update README with doc link ([03712e0](https://github.ibm.com/arf/java-codegen-spring/commit/03712e0))
+
+
+### BREAKING CHANGES
+
+* **user:** release version 1.0.0
+
+Signed off by : Adam Pilkington apilkington@uk.ibm.com
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.ibm.com/arf/java-codegen-spring/compare/v0.6.1...v0.7.0) (2017-10-12)
 
