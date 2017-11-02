@@ -65,6 +65,7 @@ class Options extends AssertSpring {
       });
       common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-starter-web');
       common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-actuator');
+      common.test(buildType).assertDependency('compile', 'org.springframework.cloud', 'spring-cloud-starter-hystrix');
       common.test(buildType).assertDependency('test', 'org.springframework.boot', 'spring-boot-starter-test');
     }
   }
