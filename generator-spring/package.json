@@ -1,6 +1,6 @@
 {
   "name": "@arf/generator-spring",
-  "version": "0.0.3",
+  "version": "1.0.1",
   "description": "Spring code generation and modification",
   "license": "Apache-2.0",
   "main": "index.js",
