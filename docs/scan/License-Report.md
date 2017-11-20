@@ -1,0 +1,41 @@
+# Package: `rx 4.1.0`
+**Package Path:** `node_modules/rx`
+
+## File: `license.txt`
+**Path:** `node_modules/rx/license.txt`  
+**Hash:** `3952d639235018110a1b34c0473cc6e9`  
+**Legal File:** YES  
+**License Types Detected**: Apache-2.0, UNKNOWN  
+**Contains Keywords:** NO  
+
+**File Text:**
+```
+<Begin COPYRIGHT>
+
+Copyright (c) Microsoft.  All rights reserved.
+
+<End COPYRIGHT>
+
+<Begin unknown text>
+
+Microsoft Open Technologies would like to thank its contributors, a list
+of whom are at http://rx.codeplex.com/wikipage?title=Contributors.
+
+<End unknown text>
+
+<Begin Apache-2.0>
+
+Licensed under the Apache License, Version 2.0 (the "License"); you
+may not use this file except in compliance with the License. You may
+obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing permissions
+and limitations under the License.
+
+<End Apache-2.0>
+```
