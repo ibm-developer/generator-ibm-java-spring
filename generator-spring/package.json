@@ -1,5 +1,5 @@
 {
-  "name": "@arf/generator-spring",
+  "name": "generator-ibm-java-spring",
   "version": "1.0.4",
   "description": "Spring code generation and modification",
   "license": "Apache-2.0",
@@ -13,35 +13,33 @@
     "handlebars": "^4.0.0",
     "yeoman-generator": "^1.0.0",
     "extend": "^3.0.1",
-    "@arf/java-common": "2.0.5",
+    "ibm-java-codegen-common": "2.3.0",
     "bluebird": "^3.5.0",
     "request": "^2.81.0",
     "unzip2": "^0.2.5"
   },
   "devDependencies": {
+    "coveralls": "^2.13.3",
+    "eslint": "^4.13.1",
     "mocha": "^3.2.0",
+    "nyc": "^11.3.0",
+    "standard-version": "^4.2.0",
     "yeoman-assert": "^2.2.2",
-    "yeoman-test": "^1.6.0",
-    "istanbul": "^0.4.5",
-    "standard-version": "^4.0.0"
+    "yeoman-test": "^1.6.0"
   },
   "scripts": {
-    "test": "mocha test/unit/*",
-    "testint": "mocha test/integration/*",
-    "testspring": "mocha test/integration/generator.spring.*",
-    "testopenapi": "mocha test/integration/generator.openapi.test.js",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/unit/*",
-    "coverageint": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/integration/*",
-    "istanbul": "./node_modules/istanbul/lib/cli.js",
+    "test": "nyc mocha test/unit/*",
+    "testint": "nyc mocha test/integration/*",
+    "testspring": "nyc mocha test/integration/generator.spring.*",
+    "testopenapi": "nyc mocha test/integration/generator.openapi.test.js",
+    "lint": "eslint .",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "prerelease": "npm test && npm run testint",
     "release": "standard-version"
   },
-  "publishConfig": {
-    "registry": "https://npm-registry.whitewater.ibm.com"
-  },
   "repository": {
     "type": "git",
-    "url": "git@github.ibm.com:arf/java-codegen-spring"
+    "url": "https://github.com/ibm-developer/generator-ibm-java-spring"
   },
   "keywords": [
     "arf",
@@ -54,6 +52,7 @@
   ],
   "contributors": [
     "Adam Pilkington",
-    "Kate Stanley"
+    "Kate Stanley",
+    "Quan Vo"
   ]
 }

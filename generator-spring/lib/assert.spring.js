@@ -17,84 +17,84 @@
 /**
  * Provides the assertions for testing Liberty code and config from this generator
  */
-'use strict';
+'use strict'
 
-const assert = require('yeoman-assert');
-const tests = require('@arf/java-common');
+const assert = require('yeoman-assert')
+const tests = require('ibm-java-codegen-common')
 
-const SPRING_VERSION = '1.5.4.RELEASE';   //current Spring version to check for
-const LOCAL_APP_PROPS = 'src/main/resources/application-local.properties';
-const APP_PROPS = 'src/main/resources/application.properties';
-const CONTENT_ROOT = 'src/main/resources/public';   //where public web content is served from
+const SPRING_VERSION = '1.5.4.RELEASE'   //current Spring version to check for
+const LOCAL_APP_PROPS = 'src/main/resources/application-local.properties'
+const APP_PROPS = 'src/main/resources/application.properties'
+const CONTENT_ROOT = 'src/main/resources/public'   //where public web content is served from
 
 //handy function for checking both existence and non-existence
-function getCheck(exists) {
+function getCheck (exists) {
   return {
-    file : exists ? assert.file : assert.noFile,
-    desc : exists ? 'should create ' : 'should not create ',
-    content : exists ? assert.fileContent : assert.noFileContent
+    file: exists ? assert.file : assert.noFile,
+    desc: exists ? 'should create ' : 'should not create ',
+    content: exists ? assert.fileContent : assert.noFileContent
   }
 }
 
-function getBuildCheck(exists, buildType) {
+function getBuildCheck (exists, buildType) {
   return {
-    content : exists ? tests.test(buildType).assertContent : tests.test(buildType).assertNoContent
+    content: exists ? tests.test(buildType).assertContent : tests.test(buildType).assertNoContent
   }
 }
 
-function AssertSpring() {
-  this.assertAllFiles = function(exists) {
-    var check = getCheck(exists);
-    it(check.desc + 'server specific files - application-local.properties', function() {
-      check.file(LOCAL_APP_PROPS);
-    });
-    it(check.desc + 'server specific files - application.properties', function() {
-      check.file(APP_PROPS);
-    });
+function AssertSpring () {
+  this.assertAllFiles = function (exists) {
+    const check = getCheck(exists)
+    it(check.desc + 'server specific files - application-local.properties', function () {
+      check.file(LOCAL_APP_PROPS)
+    })
+    it(check.desc + 'server specific files - application.properties', function () {
+      check.file(APP_PROPS)
+    })
   }
 
-  this.assertArtifactID = function(buildType, id) {
-    var check = getBuildCheck(true, buildType);
-    if(buildType === 'gradle') {
-      it('settings.gradle contains root project setting of ' + id, function() {
-        assert.fileContent('settings.gradle', 'rootProject.name = \'' + id + '\'');
-      });
+  this.assertArtifactID = function (buildType, id) {
+    const check = getBuildCheck(true, buildType)
+    if (buildType === 'gradle') {
+      it('settings.gradle contains root project setting of ' + id, function () {
+        assert.fileContent('settings.gradle', 'rootProject.name = \'' + id + '\'')
+      })
     }
-    if(buildType === 'maven') {
-      check.content('<artifactId>' + id + '</artifactId>');
+    if (buildType === 'maven') {
+      check.content('<artifactId>' + id + '</artifactId>')
     }
   }
 
-  this.assertVersion = function(buildType) {
-    describe('contains Spring version ' + SPRING_VERSION, function() {
-      var check = getBuildCheck(true, buildType);
-      if(buildType === 'gradle') {
-        check.content('org.springframework.boot:spring-boot-gradle-plugin:' + SPRING_VERSION);
+  this.assertVersion = function (buildType) {
+    describe('contains Spring version ' + SPRING_VERSION, function () {
+      const check = getBuildCheck(true, buildType)
+      if (buildType === 'gradle') {
+        check.content('org.springframework.boot:spring-boot-gradle-plugin:' + SPRING_VERSION)
       }
-      if(buildType === 'maven') {
-        var groupId = 'org\\.springframework\\.boot';
-        var artifactId = 'spring-boot-starter-parent';
-        var version = SPRING_VERSION.replace(/\./g, '\\.');
-        var content = '<parent>\\s*<groupId>' + groupId + '</groupId>\\s*<artifactId>' + artifactId + '</artifactId>\\s*<version>' + version + '</version>\\s*</parent>';
-        var regex = new RegExp(content);
-        check.content(regex);
+      if (buildType === 'maven') {
+        const groupId = 'org\\.springframework\\.boot'
+        const artifactId = 'spring-boot-starter-parent'
+        const version = SPRING_VERSION.replace(/\./g, '\\.')
+        const content = '<parent>\\s*<groupId>' + groupId + '</groupId>\\s*<artifactId>' + artifactId + '</artifactId>\\s*<version>' + version + '</version>\\s*</parent>'
+        const regex = new RegExp(content)
+        check.content(regex)
       }
-    });
+    })
   }
 
-  this.assertEnv = function(exists, name, value) {
-    var check = getCheck(exists);
-    it(check.desc + 'an application-local.properties entry for ' + name + " = " + value, function() {
-      check.content(LOCAL_APP_PROPS, name + '="' + value + '"');
-    });
+  this.assertEnv = function (exists, name, value) {
+    const check = getCheck(exists)
+    it(check.desc + 'an application-local.properties entry for ' + name + ' = ' + value, function () {
+      check.content(LOCAL_APP_PROPS, name + '="' + value + '"')
+    })
   }
 
-  this.assertContent = function(exists, path) {
-    var check = getCheck(exists);
-    it(check.desc + 'content at ' + path, function() {
-      check.file(CONTENT_ROOT + path);
-    });
+  this.assertContent = function (exists, path) {
+    const check = getCheck(exists)
+    it(check.desc + 'content at ' + path, function () {
+      check.file(CONTENT_ROOT + path)
+    })
   }
 }
 
-module.exports = exports = AssertSpring;
+module.exports = exports = AssertSpring

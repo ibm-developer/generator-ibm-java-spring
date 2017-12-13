@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-var Generator = require('yeoman-generator');
-var Handlebars = require('handlebars');
-var fspath = require('path');
-var fs = require('fs');
-var extend = require('extend');
+'use strict';
+
+const Generator = require('yeoman-generator');
+const extend = require('extend');
 const Defaults = require('../../lib/defaults');
 const OpenApi = require('../../lib/openapi');
 
-var defaults = new Defaults();
+const defaults = new Defaults();
 
 module.exports = class extends Generator {
 
@@ -32,7 +31,7 @@ module.exports = class extends Generator {
     defaults.setOptions(this);
     extend(this, opts.context);   //inject the objects and functions directly into 'this' to make things easy
     this.logger.writeToLog("Spring Generator context", opts.context);
-    var ext = this.promptmgr.add(require('../prompts/spring.js'));
+    const ext = this.promptmgr.add(require('../prompts/spring.js'));
     ext.setContext(opts.context);
     this.conf.addMissing(opts, defaults);
     this.openApiDir = [];
@@ -41,8 +40,7 @@ module.exports = class extends Generator {
 
   initializing() {
   }
-
-
+  
   prompting() {
     //do not add questions in here, use the promptmgr on the context if you need to get input from the user
   }

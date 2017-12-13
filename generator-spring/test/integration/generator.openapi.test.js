@@ -17,111 +17,106 @@
 /**
  * Tests the Liberty aspects generator
  */
-'use strict';
-const path = require('path');
-const helpers = require('yeoman-test');
-const assert = require('yeoman-assert');
-const AssertOpenApi = require('../../lib/assert.openapi');
-const MockPromptMgr = require('../mocks/mock.promptmgr');
-const common = require('@arf/java-common');
-const Context = common.context;
-const openapidoc = require('../../resources/openapi/basicswagger.json');
-const openapidoc1 = require('../../resources/openapi/basicswagger1.json');
+'use strict'
+const path = require('path')
+const helpers = require('yeoman-test')
+const AssertOpenApi = require('../../lib/assert.openapi')
+const MockPromptMgr = require('../mocks/mock.promptmgr')
+const common = require('ibm-java-codegen-common')
+const openapidoc = require('../../resources/openapi/basicswagger.json')
+const openapidoc1 = require('../../resources/openapi/basicswagger1.json')
 
-const ARTIFACTID = 'artifact.0.1';
-const GROUPID = 'test.group';
-const VERSION = '1.0.0';
-const APPNAME = 'testApp';
+const ARTIFACTID = 'artifact.0.1'
+const GROUPID = 'test.group'
+const VERSION = '1.0.0'
+const APPNAME = 'testApp'
 
 class Options extends AssertOpenApi {
 
-  constructor(buildType, createType, bluemix) {
-    super();
+  constructor (buildType, createType, bluemix) {
+    super()
     this.conf = {
-      headless :  "true",
-      debug : "true",
-      buildType : buildType,
-      createType : createType,
-      promptType : 'prompt:spring',
-      appName : APPNAME,
-      groupId : GROUPID,
-      artifactId : ARTIFACTID,
-      version : VERSION
+      headless: 'true',
+      debug: 'true',
+      buildType: buildType,
+      createType: createType,
+      promptType: 'prompt:spring',
+      appName: APPNAME,
+      groupId: GROUPID,
+      artifactId: ARTIFACTID,
+      version: VERSION
     }
-    if(bluemix) {
-        this.conf.bluemix = bluemix;
+    if (bluemix) {
+      this.conf.bluemix = bluemix
     }
-    var ctx = new common.context('test', this.conf, new MockPromptMgr());
+    const ctx = new common.context('test', this.conf, new MockPromptMgr())
     this.options = {
-      context : ctx
-    };
-    this.before = function() {
-      return helpers.run(path.join( __dirname, '../../generators/app'))
+      context: ctx
+    }
+    this.before = function () {
+      return helpers.run(path.join(__dirname, '../../generators/app'))
         .withOptions(this.options)
         .withPrompts({})
-        .toPromise();
+        .toPromise()
     }
   }
 }
 
-const buildTypes = ['gradle', 'maven'];
+const buildTypes = ['gradle', 'maven']
 
 describe('java spring generator : Spring generation integration test', function () {
-  this.timeout(60000);
+  this.timeout(60000)
 
   buildTypes.forEach(buildType => {
     describe('generate project without openapi code with buildType ' + buildType, function () {
-      var bluemix = {
-        "backendPlatform" : "SPRING"
-      }
-      var options = new Options(buildType, 'health');
-      before(options.before.bind(options));
-      options.assert(false, [], buildType);
-    });
+      const options = new Options(buildType, 'health')
+      before(options.before.bind(options))
+      options.assert(false, [], buildType)
+    })
     describe('generate project with openapi code with buildType ' + buildType, function () {
-      var bluemix = {
-          "backendPlatform" : "SPRING",
-          "openApiServers" : [
-              {
-                  "spec" : JSON.stringify(openapidoc)
-              }
-          ]
+      const bluemix = {
+        'backendPlatform': 'SPRING',
+        'openApiServers': [
+          {
+            'spec': JSON.stringify(openapidoc)
+          }
+        ]
       }
-      var options = new Options(buildType, 'health', bluemix);
-      before(options.before.bind(options));
-      options.assert(true, ['example'], buildType);
-    });
+      const options = new Options(buildType, 'health', bluemix)
+      before(options.before.bind(options))
+      options.assert(true, ['example'], buildType)
+    })
     describe('generate project with two identical openapi code docs with buildType ' + buildType, function () {
-      var bluemix = {
-          "backendPlatform" : "SPRING",
-          "openApiServers" : [
-              {
-                  "spec" : JSON.stringify(openapidoc)
-              },
-              {
-                  "spec" : JSON.stringify(openapidoc)
-              }
-          ]
+      const bluemix = {
+        'backendPlatform': 'SPRING',
+        'openApiServers': [
+          {
+            'spec': JSON.stringify(openapidoc)
+          },
+          {
+            'spec': JSON.stringify(openapidoc)
+          }
+        ]
       }
-      var options = new Options(buildType, 'health', bluemix);
-      before(options.before.bind(options));
-      options.assert(true, ['example'], buildType);
-    });
+      const options = new Options(buildType, 'health', bluemix)
+      before(options.before.bind(options))
+      options.assert(true, ['example'], buildType)
+    })
     describe('generate project with two different openapi code docs with buildType ' + buildType, function () {
-      var bluemix = {
-          "backendPlatform" : "SPRING",
-          "openApiServers" : [
-              {
-                  "spec" : JSON.stringify(openapidoc)
-              },
-              {
-                  "spec" : JSON.stringify(openapidoc1)
-              }
-          ]
+      const bluemix = {
+        'backendPlatform': 'SPRING',
+        'openApiServers': [
+          {
+            'spec': JSON.stringify(openapidoc)
+          },
+          {
+            'spec': JSON.stringify(openapidoc1)
+          }
+        ]
       }
-      var options = new Options(buildType, 'health', bluemix);
-      before(options.before.bind(options));
-      options.assert(true, ['example', 'example1'], buildType);
-    });
-  });
+      const options = new Options(buildType, 'health', bluemix)
+      before(options.before.bind(options))
+      options.assert(true, ['example', 'example1'], buildType)
+    })
+  })
 })
