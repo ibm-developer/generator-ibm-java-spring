@@ -16,7 +16,9 @@
 
 //module for storing default configuration values
 
-const defaultModule = require('@arf/java-common').defaults;
+'use strict';
+
+const defaultModule = require('ibm-java-codegen-common').defaults;
 
 //defaults to be used by the main generator
 const DEFAULTS = {

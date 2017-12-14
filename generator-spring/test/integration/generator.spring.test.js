@@ -17,97 +17,91 @@
 /**
  * Tests the Liberty aspects generator
  */
-'use strict';
-const path = require('path');
-const assert = require('yeoman-assert');
-const helpers = require('yeoman-test');
-const AssertSpring = require('../../lib/assert.spring');
-const MockPromptMgr = require('../mocks/mock.promptmgr');
-const common = require('@arf/java-common');
 
-const ARTIFACTID = 'artifact';
-const GROUPID = 'test.group';
-const VERSION = '1.0.0';
-const APPNAME = 'testApp';
-const FRAMEWORK = 'spring';
+'use strict'
+
+const path = require('path')
+const assert = require('yeoman-assert')
+const helpers = require('yeoman-test')
+const AssertSpring = require('../../lib/assert.spring')
+const MockPromptMgr = require('../mocks/mock.promptmgr')
+const common = require('ibm-java-codegen-common')
+
+const ARTIFACTID = 'artifact'
+const GROUPID = 'test.group'
+const VERSION = '1.0.0'
+const APPNAME = 'testApp'
 
 class Options extends AssertSpring {
-
-  constructor(buildType, createType, envEntries) {
-    super();
+  constructor (buildType, createType, envEntries) {
+    super()
     this.conf = {
-      headless :  "true",
-      debug : "true",
-      buildType : buildType,
-      createType : createType,
-      promptType : 'prompt:spring',
-      envEntries : envEntries,
-      appName : APPNAME,
-      groupId : GROUPID,
-      artifactId : ARTIFACTID,
-      version : VERSION
+      headless: 'true',
+      debug: 'true',
+      buildType: buildType,
+      createType: createType,
+      promptType: 'prompt:spring',
+      envEntries: envEntries,
+      appName: APPNAME,
+      groupId: GROUPID,
+      artifactId: ARTIFACTID,
+      version: VERSION
     }
-    var ctx = new common.context('test', this.conf, new MockPromptMgr());
+    const ctx = new common.context('test', this.conf, new MockPromptMgr())
     this.options = {
-      context : ctx
-    };
-    this.before = function() {
-      return helpers.run(path.join( __dirname, '../../generators/app'))
+      context: ctx
+    }
+    this.before = function () {
+      return helpers.run(path.join(__dirname, '../../generators/app'))
         .withOptions(this.options)
         .withPrompts({})
-        .toPromise();
+        .toPromise()
     }
-
-    this.assertHealthFiles = function(buildType) {
-      it('creates Java src files for health endpoint', function() {
+    this.assertHealthFiles = function (buildType) {
+      it('creates Java src files for health endpoint', function () {
         assert.file(['src/main/java/application/SBApplication.java', 'src/main/java/application/rest/HealthEndpoint.java',
-          'src/test/java/application/HealthEndpointTest.java']);
-      });
-      common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-starter-web');
-      common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-actuator');
-      common.test(buildType).assertDependency('compile', 'org.springframework.cloud', 'spring-cloud-starter-hystrix');
-      common.test(buildType).assertDependency('test', 'org.springframework.boot', 'spring-boot-starter-test');
+          'src/test/java/application/HealthEndpointTest.java'])
+      })
+      common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-starter-web')
+      common.test(buildType).assertDependency('compile', 'org.springframework.boot', 'spring-boot-actuator')
+      common.test(buildType).assertDependency('compile', 'org.springframework.cloud', 'spring-cloud-starter-hystrix')
+      common.test(buildType).assertDependency('test', 'org.springframework.boot', 'spring-boot-starter-test')
     }
   }
 
 }
 
-const buildTypes = ['gradle', 'maven'];
-const envEntries = [{name: 'envName', value : 'envValue'}];
+const buildTypes = ['gradle', 'maven']
+const envEntries = [{name: 'envName', value: 'envValue'}]
 
 describe('java spring generator : Spring server integration test', function () {
 
   buildTypes.forEach(buildType => {
     describe('Generates server configuration for ' + buildType, function () {
-      var options = new Options(buildType, 'health', envEntries);
-      before(options.before.bind(options));
-      options.assertAllFiles(true);
-      options.assertVersion(buildType);
+      const options = new Options(buildType, 'health', envEntries)
+      before(options.before.bind(options))
+      options.assertAllFiles(true)
+      options.assertVersion(buildType)
       envEntries.forEach(entry => {
-          options.assertEnv(true, entry.name, entry.value);
-        });
-      options.assertHealthFiles(buildType);
-    });
+        options.assertEnv(true, entry.name, entry.value)
+      })
+      options.assertHealthFiles(buildType)
+    })
 
     describe('Check artifact id for ' + buildType, function () {
-      var options = new Options(buildType, 'health', envEntries);
-      before(options.before.bind(options));
-      options.assertArtifactID(buildType, options.conf.artifactId);
-    });
-
+      const options = new Options(buildType, 'health', envEntries)
+      before(options.before.bind(options))
+      options.assertArtifactID(buildType, options.conf.artifactId)
+    })
   })
-
-});
+})
 
 describe('java spring generator : Spring server content test', function () {
-
   describe('Check default content is generated', function () {
-    var options = new Options('maven', 'content', envEntries);
-    before(options.before.bind(options));
-    options.assertContent(true, '/index.html');
-    options.assertContent(true, '/error/404.html');
-  });
-  
-
-});
+    const options = new Options('maven', 'content', envEntries)
+    before(options.before.bind(options))
+    options.assertContent(true, '/index.html')
+    options.assertContent(true, '/error/404.html')
+  })
+})
 

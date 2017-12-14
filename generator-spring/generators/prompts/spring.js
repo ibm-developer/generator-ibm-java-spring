@@ -16,86 +16,87 @@
 
 'use strict'
 
-const PROMPT_ID = 'prompt:spring';
+const PROMPT_ID = 'prompt:spring'
 
-function Extension(config) {
-  this.id = PROMPT_ID;
-  this.config = config;
-  this.context = undefined;
+function Extension (config) {
+  this.id = PROMPT_ID
+  this.config = config
+  this.context = undefined
 }
 
-Extension.prototype.getChoice = function() {
+Extension.prototype.getChoice = function () {
   return {
-    name : 'Spring : generate source for Spring .',
-    value : PROMPT_ID,
-    short : 'Technology selection'
-  };
-}
-
-Extension.prototype.show = function(answers) {
-  var result = false;
-  if (answers) {
-    if(answers.promptType) {
-      result = (answers.promptType === PROMPT_ID);
-    } else {
-      result = (this.config.promptType === PROMPT_ID);
-    }
-  }  else {
-    result = (this.config.promptType === PROMPT_ID);
+    name: 'Spring : generate source for Spring .',
+    value: PROMPT_ID,
+    short: 'Technology selection'
   }
-  return result;
 }
 
-Extension.prototype.getQuestions = function() {
+Extension.prototype.show = function (answers) {
+  let result = false
+  if (answers) {
+    if (answers.promptType) {
+      result = (answers.promptType === PROMPT_ID)
+    } else {
+      result = (this.config.promptType === PROMPT_ID)
+    }
+  } else {
+    result = (this.config.promptType === PROMPT_ID)
+  }
+  return result
+}
+
+Extension.prototype.getQuestions = function () {
   return [{
-    when    : this.show.bind(this),
-    type    : 'list',
-    name    : 'createType',
-    message : 'What type of source do you want to generate?',
-    choices : [{
-      name : 'Basic microservice',
-      value : 'microservice/spring',
-      short : 'A Spring based microservice'
-    }]},{
-      when    : this.show.bind(this),
-      type    : 'list',
-      name    : 'buildType',
-      message : 'Select the build type for your project.\n',
-      choices : ['maven', 'gradle'],
-      default : 'maven'
-    }, {
-      when    : this.show.bind(this),
-      type    : 'input',
-      name    : 'appName',
-      message : 'Enter a name for your project',
-      default : 'SpringProject'
-    }, {
-      when    : this.show.bind(this),
-      type    : 'input',
-      name    : 'groupId',
-      message : 'Enter a group id for your project',
-      default : 'spring.projects'
-    }, {
-      when    : this.show.bind(this),
-      type    : 'input',
-      name    : 'artifactId',
-      message : 'Enter an artifact id for your project',
-      default : (answers) => {return answers.appName}
-    }, {
-    when : this.show.bind(this),
-    type : 'confirm',
-    name : 'addbluemix',
-    message : 'Add bluemix to your application?',
-    default : false
-  }];
+    when: this.show.bind(this),
+    type: 'list',
+    name: 'createType',
+    message: 'What type of source do you want to generate?',
+    choices: [{
+      name: 'Basic microservice',
+      value: 'microservice/spring',
+      short: 'A Spring based microservice'
+    }]
+  }, {
+    when: this.show.bind(this),
+    type: 'list',
+    name: 'buildType',
+    message: 'Select the build type for your project.\n',
+    choices: ['maven', 'gradle'],
+    default: 'maven'
+  }, {
+    when: this.show.bind(this),
+    type: 'input',
+    name: 'appName',
+    message: 'Enter a name for your project',
+    default: 'SpringProject'
+  }, {
+    when: this.show.bind(this),
+    type: 'input',
+    name: 'groupId',
+    message: 'Enter a group id for your project',
+    default: 'spring.projects'
+  }, {
+    when: this.show.bind(this),
+    type: 'input',
+    name: 'artifactId',
+    message: 'Enter an artifact id for your project',
+    default: (answers) => {return answers.appName}
+  }, {
+    when: this.show.bind(this),
+    type: 'confirm',
+    name: 'addbluemix',
+    message: 'Add bluemix to your application?',
+    default: false
+  }]
 }
 
-Extension.prototype.setContext = function(ctx) {
-  this.context = ctx;
+Extension.prototype.setContext = function (ctx) {
+  this.context = ctx
 }
 
-Extension.prototype.afterPrompt = function(answers, config) {
-  this.context.conf.overwrite(answers);
+Extension.prototype.afterPrompt = function (answers) {
+  this.context.conf.overwrite(answers)
 }
 
-module.exports = exports = Extension;
+module.exports = exports = Extension
