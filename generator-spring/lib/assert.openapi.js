@@ -62,10 +62,10 @@ function AssertOpenApi () {
         'src/main/java/io/swagger/RFC3339DateFormat.java',
         'src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java',
         'src/main/java/io/swagger/configuration/HomeController.java',
-        'src/main/java/io/swagger/api/NotFoundException.java',
-        'src/main/java/io/swagger/api/ApiResponseMessage.java',
-        'src/main/java/io/swagger/api/ApiOriginFilter.java',
-        'src/main/java/io/swagger/api/ApiException.java'
+        'src/main/java/application/NotFoundException.java',
+        'src/main/java/application/ApiResponseMessage.java',
+        'src/main/java/application/ApiOriginFilter.java',
+        'src/main/java/application/ApiException.java'
       ])
     })
     if (examples.includes('example')) {
