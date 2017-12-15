@@ -53,7 +53,7 @@ const generate = function (docs, parentLogger) {
 }
 
 const generateFromDoc = function (doc) {
-  return performSDKGenerationAsync('testSpringSDK', 'server_java_spring_boot', doc)
+  return performSDKGenerationAsync('testSpringSDK', 'server_java_spring_bindings', doc)
     .then(generatedID => {
       logger.writeToLog('Spring Generator generated code from open api document with id ' + generatedID)
       return getServerSDKAsync('testSpringSDK', generatedID)
@@ -72,7 +72,8 @@ const performSDKGenerationAsync = function (sdkName, sdkType, fileContent) {
   return request.postAsync({
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Openapi-Opts': 'apiPackage=application,modelPackage=application.model,apiTemplateFiles=apiBinding.mustache=Binding.java'
     },
     url: startGenURL,
     body: fileContent
@@ -88,8 +89,8 @@ const performSDKGenerationAsync = function (sdkName, sdkType, fileContent) {
     .then(generatedID => checkUntilFinished(generatedID))
 
   function checkUntilFinished (generatedID, count) {
-    count = count || 1
-    logger.writeToLog(`#${count} checking status of SDK generation job with id ${generatedID} (for ${sdkName})`)
+    count = count || 1;
+    logger.writeToLog(`#${count} checking status of SDK generation job with id ${generatedID} (for ${sdkName})`);
     return getStatusAsync(generatedID)
       .then(finished => {
         if (finished) {
