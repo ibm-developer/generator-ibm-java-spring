@@ -71,27 +71,27 @@ function AssertOpenApi () {
     if (examples.includes('example')) {
       it(desc + 'example openapi files', function () {
         check([
-          'src/main/java/io/swagger/model/User.java',
-          'src/main/java/io/swagger/model/Tag.java',
-          'src/main/java/io/swagger/model/Pet.java',
-          'src/main/java/io/swagger/model/Order.java',
-          'src/main/java/io/swagger/model/ModelApiResponse.java',
-          'src/main/java/io/swagger/model/Category.java',
-          'src/main/java/io/swagger/api/UserApiController.java',
-          'src/main/java/io/swagger/api/UserApi.java',
-          'src/main/java/io/swagger/api/StoreApiController.java',
-          'src/main/java/io/swagger/api/StoreApi.java',
-          'src/main/java/io/swagger/api/PetApiController.java',
-          'src/main/java/io/swagger/api/PetApi.java',
+          'src/main/java/application/model/User.java',
+          'src/main/java/application/model/Tag.java',
+          'src/main/java/application/model/Pet.java',
+          'src/main/java/application/model/Order.java',
+          'src/main/java/application/model/ModelApiResponse.java',
+          'src/main/java/application/model/Category.java',
+          'src/main/java/application/UserApiController.java',
+          'src/main/java/application/UserApi.java',
+          'src/main/java/application/StoreApiController.java',
+          'src/main/java/application/StoreApi.java',
+          'src/main/java/application/PetApiController.java',
+          'src/main/java/application/PetApi.java',
         ])
       })
     }
     if (examples.includes('example1')) {
       it(desc + 'example1 openapi files', function () {
         check([
-          'src/main/java/io/swagger/model/Pet1.java',
-          'src/main/java/io/swagger/api/Pets1ApiController.java',
-          'src/main/java/io/swagger/api/Pets1Api.java',
+          'src/main/java/application/model/Pet1.java',
+          'src/main/java/application/Pets1ApiController.java',
+          'src/main/java/application/Pets1Api.java',
         ])
       })
     }
