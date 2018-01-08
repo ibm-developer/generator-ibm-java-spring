@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.1.0...v1.2.0) (2018-01-08)
+
+
+### Features
+
+* **templates:** update to new templates which support service bindings ([782d62d](https://github.com/ibm-developer/generator-ibm-java-spring/commit/782d62d))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.0.4...v1.1.0) (2018-01-08)
 
