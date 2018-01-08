@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.0.4...v1.1.0) (2018-01-08)
+
+
+### Bug Fixes
+
+* **build:** Fix travis build. ([2ea58fb](https://github.com/ibm-developer/generator-ibm-java-spring/commit/2ea58fb))
+
+
+### Features
+
+* **travis:** added linter, updated package.json, .travis.yml, others ([b221c7c](https://github.com/ibm-developer/generator-ibm-java-spring/commit/b221c7c))
+
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.ibm.com/arf/java-codegen-spring/compare/v1.0.3...v1.0.4) (2017-11-20)
 
