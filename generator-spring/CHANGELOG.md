@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.2.0...v1.2.1) (2018-01-09)
+
+
+### Bug Fixes
+
+* **build:** Update deploy.sh to exit properly if prerelease fails ([5ae361f](https://github.com/ibm-developer/generator-ibm-java-spring/commit/5ae361f))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.1.0...v1.2.0) (2018-01-08)
 
