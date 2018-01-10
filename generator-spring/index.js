@@ -20,5 +20,7 @@ module.exports = {
   integrationAsserts : {
     spring : require('./lib/assert.spring'),
     openapi : require('./lib/assert.openapi')
-  }
+  },
+  defaults: require('./lib/defaults'),
+  prompts: [require('./generators/prompts/spring')]
 };
