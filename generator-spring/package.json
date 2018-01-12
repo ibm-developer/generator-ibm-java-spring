@@ -13,7 +13,7 @@
     "handlebars": "^4.0.0",
     "yeoman-generator": "^1.0.0",
     "extend": "^3.0.1",
-    "ibm-java-codegen-common": "2.3.0",
+    "ibm-java-codegen-common": "3.0.0",
     "bluebird": "^3.5.0",
     "request": "^2.81.0",
     "unzip2": "^0.2.5"
