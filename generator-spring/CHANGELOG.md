@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.3.0...v2.0.0) (2018-01-12)
+
+
+### Features
+
+* **lib:** Remove prompting and update logging ([b5384d9](https://github.com/ibm-developer/generator-ibm-java-spring/commit/b5384d9))
+
+
+### BREAKING CHANGES
+
+* **lib:** Remove prompting, remove options, alter logging api
+
+Signed-off-by: Katherine Stanley <katheris@uk.ibm.com>
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.2.1...v1.3.0) (2018-01-10)
 
