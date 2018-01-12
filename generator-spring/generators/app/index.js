@@ -22,6 +22,7 @@ const Defaults = require('../../lib/defaults');
 const OpenApi = require('../../lib/openapi');
 
 const defaults = new Defaults();
+const logId = require('../../package.json').name;
 
 module.exports = class extends Generator {
 
@@ -30,19 +31,17 @@ module.exports = class extends Generator {
     if(!opts.context) throw "This generator cannot be run standalone, only composed with.";
     defaults.setOptions(this);
     extend(this, opts.context);   //inject the objects and functions directly into 'this' to make things easy
-    this.logger.writeToLog("Spring Generator context", opts.context);
-    const ext = this.promptmgr.add(require('../prompts/spring.js'));
-    ext.setContext(opts.context);
+    this.logger.writeToLog(`${logId}:constructor - context`, opts.context);
     this.conf.addMissing(opts, defaults);
     this.openApiDir = [];
-    this.logger.writeToLog("Spring Generator conf (final)", this.conf);
+    this.logger.writeToLog(`${logId}:constructor -  conf (final)`, this.conf);
   }
 
   initializing() {
   }
   
   prompting() {
-    //do not add questions in here, use the promptmgr on the context if you need to get input from the user
+    //this generator does not prompt, questions can be set in the prompts directory for testing purposes
   }
 
   configuring() {

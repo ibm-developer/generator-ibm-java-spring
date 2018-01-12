@@ -36,11 +36,8 @@ class Options extends AssertOpenApi {
   constructor (buildType, createType, bluemix) {
     super()
     this.conf = {
-      headless: 'true',
-      debug: 'true',
       buildType: buildType,
       createType: createType,
-      promptType: 'prompt:spring',
       appName: APPNAME,
       groupId: GROUPID,
       artifactId: ARTIFACTID,
@@ -56,7 +53,6 @@ class Options extends AssertOpenApi {
     this.before = function () {
       return helpers.run(path.join(__dirname, '../../generators/app'))
         .withOptions(this.options)
-        .withPrompts({})
         .toPromise()
     }
   }

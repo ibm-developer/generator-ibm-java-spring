@@ -36,11 +36,8 @@ class Options extends AssertSpring {
   constructor (buildType, createType, envEntries) {
     super()
     this.conf = {
-      headless: 'true',
-      debug: 'true',
       buildType: buildType,
       createType: createType,
-      promptType: 'prompt:spring',
       envEntries: envEntries,
       appName: APPNAME,
       groupId: GROUPID,
@@ -54,7 +51,6 @@ class Options extends AssertSpring {
     this.before = function () {
       return helpers.run(path.join(__dirname, '../../generators/app'))
         .withOptions(this.options)
-        .withPrompts({})
         .toPromise()
     }
     this.assertHealthFiles = function (buildType) {
