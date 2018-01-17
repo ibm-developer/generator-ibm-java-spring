@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.0.0...v2.0.1) (2018-01-17)
+
+
+### Bug Fixes
+
+* **lib:** move dev dependencies to dependencies in package.json ([684e8cc](https://github.com/ibm-developer/generator-ibm-java-spring/commit/684e8cc))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v1.3.0...v2.0.0) (2018-01-12)
 
