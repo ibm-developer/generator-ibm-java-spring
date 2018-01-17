@@ -16,7 +16,8 @@
     "ibm-java-codegen-common": "3.0.0",
     "bluebird": "^3.5.0",
     "request": "^2.81.0",
-    "unzip2": "^0.2.5"
+    "unzip2": "^0.2.5",
+    "yeoman-assert": "^2.2.2"
   },
   "devDependencies": {
     "coveralls": "^2.13.3",
@@ -24,7 +25,6 @@
     "mocha": "^3.2.0",
     "nyc": "^11.3.0",
     "standard-version": "^4.2.0",
-    "yeoman-assert": "^2.2.2",
     "yeoman-test": "^1.6.0"
   },
   "scripts": {
