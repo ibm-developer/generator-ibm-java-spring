@@ -33,12 +33,13 @@ const VERSION = '1.0.0'
 const APPNAME = 'testApp'
 
 class Options extends AssertSpring {
-  constructor (buildType, createType, envEntries) {
+  constructor (buildType, createType, envEntries, javametrics) {
     super()
     this.conf = {
       buildType: buildType,
       createType: createType,
       envEntries: envEntries,
+      javametrics: javametrics,
       appName: APPNAME,
       groupId: GROUPID,
       artifactId: ARTIFACTID,
@@ -74,7 +75,7 @@ describe('java spring generator : Spring server integration test', function () {
 
   buildTypes.forEach(buildType => {
     describe('Generates server configuration for ' + buildType, function () {
-      const options = new Options(buildType, 'health', envEntries)
+      const options = new Options(buildType, 'health', envEntries, false)
       before(options.before.bind(options))
       options.assertAllFiles(true)
       options.assertVersion(buildType)
@@ -85,19 +86,28 @@ describe('java spring generator : Spring server integration test', function () {
     })
 
     describe('Check artifact id for ' + buildType, function () {
-      const options = new Options(buildType, 'health', envEntries)
+      const options = new Options(buildType, 'health', envEntries, false)
       before(options.before.bind(options))
       options.assertArtifactID(buildType, options.conf.artifactId)
+      options.assertJavaMetrics(false, buildType);
     })
   })
 })
 
 describe('java spring generator : Spring server content test', function () {
   describe('Check default content is generated', function () {
-    const options = new Options('maven', 'content', envEntries)
+    const options = new Options('maven', 'content', envEntries, false)
     before(options.before.bind(options))
     options.assertContent(true, '/index.html')
     options.assertContent(true, '/error/404.html')
   })
 })
 
+describe('java spring generator : Spring server javametrics test', function () {
+  describe('Check javametrics content is generated', function () {
+    const options = new Options('maven', 'health', envEntries, true)
+    before(options.before.bind(options))
+    options.assertHealthFiles('maven')
+    options.assertJavaMetrics(true, 'maven')
+  })
+})

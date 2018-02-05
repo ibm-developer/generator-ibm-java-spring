@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfigurat
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 {{/mongodb}}
 {{/bluemix}}
+{{#javametrics}}
+import org.springframework.context.annotation.ComponentScan;
+{{/javametrics}}
 
 @SpringBootApplication
 {{#bluemix}}
@@ -16,6 +19,9 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 {{/mongodb}}
 {{/bluemix}}
+{{#javametrics}}
+@ComponentScan(basePackages = {"application", "com.ibm.javametrics.spring"})
+{{/javametrics}}
 public class SBApplication {
 
     public static void main(String[] args) {
