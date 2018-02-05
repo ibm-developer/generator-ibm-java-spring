@@ -99,7 +99,6 @@ describe('java spring generator : Spring server content test', function () {
     const options = new Options('maven', 'content', envEntries, false)
     before(options.before.bind(options))
     options.assertContent(true, '/index.html')
-    options.assertContent(true, '/error/404.html')
   })
 })
 
