@@ -61,7 +61,6 @@ function AssertOpenApi () {
         'src/main/java/io/swagger/Swagger2SpringBoot.java',
         'src/main/java/io/swagger/RFC3339DateFormat.java',
         'src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java',
-        'src/main/java/io/swagger/configuration/HomeController.java',
         'src/main/java/application/NotFoundException.java',
         'src/main/java/application/ApiResponseMessage.java',
         'src/main/java/application/ApiOriginFilter.java',

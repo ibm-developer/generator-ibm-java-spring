@@ -56,7 +56,11 @@ module.exports = class extends Generator {
 
   writing() {
     if(this.openApiDir.length > 0) {
-      OpenApi.writeFiles(this.openApiDir, this);
+      OpenApi.writeFiles(this.openApiDir, this)
+      const homeControllerPath = this.destinationPath('src/main/java/io/swagger/configuration/HomeController.java')
+      if (this.fs.exists(homeControllerPath)) {
+        this.fs.delete(homeControllerPath)
+      }
     }
     return this.defaultWriter(this);   //use the default writer supplied by the context.
   }
