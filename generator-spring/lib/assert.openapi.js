@@ -27,20 +27,13 @@ const PROP_FILE = 'src/main/resources/application.properties'
 
 function AssertOpenApi () {
   this.assert = function (exists, examples, buildType) {
-    this.assertHealthFiles(exists)
+    this.assertHealthFiles()
     this.assertCommon(exists, examples, buildType)
   }
 
-  this.assertHealthFiles = function (exists) {
+  this.assertHealthFiles = function () {
     it('check health endpoint file is generated', function () {
       assert.file('src/main/java/application/rest/HealthEndpoint.java')
-    })
-    it('check health endpoint test is generated with correct content', function () {
-      if (exists) {
-        assert.fileContent('src/test/java/application/HealthEndpointTest.java', 'classes=io.swagger.Swagger2SpringBoot.class')
-      } else {
-        assert.noFileContent('src/test/java/application/HealthEndpointTest.java', 'classes=io.swagger.Swagger2SpringBoot.class')
-      }
     })
   }
 
@@ -49,16 +42,8 @@ function AssertOpenApi () {
     const checkContents = exists ? assert.fileContent : assert.noFileContent
     const desc = exists ? 'creates ' : 'does not create '
     const contentDesc = exists ? ' contains ' : ' does not contain '
-    it(desc + 'SBApplication.java file', function () {
-      if (exists) {
-        assert.noFile('src/main/java/application/SBApplication.java')
-      } else {
-        assert.file('src/main/java/application/SBApplication.java')
-      }
-    })
     it(desc + 'core openapi files', function () {
       check([
-        'src/main/java/io/swagger/Swagger2SpringBoot.java',
         'src/main/java/io/swagger/RFC3339DateFormat.java',
         'src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java',
         'src/main/java/application/NotFoundException.java',
