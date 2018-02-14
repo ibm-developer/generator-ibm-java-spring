@@ -50,16 +50,11 @@ function AssertOpenApi () {
     const desc = exists ? 'creates ' : 'does not create '
     const contentDesc = exists ? ' contains ' : ' does not contain '
     it(desc + 'SBApplication.java file', function () {
-      if (exists) {
-        assert.noFile('src/main/java/application/SBApplication.java')
-      } else {
-        assert.file('src/main/java/application/SBApplication.java')
-      }
+      assert.file('src/main/java/application/SBApplication.java')
     })
     it(desc + 'core openapi files', function () {
       check([
-        'src/main/java/io/swagger/Swagger2SpringBoot.java',
-        'src/main/java/io/swagger/RFC3339DateFormat.java',
+         'src/main/java/io/swagger/RFC3339DateFormat.java',
         'src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java',
         'src/main/java/application/NotFoundException.java',
         'src/main/java/application/ApiResponseMessage.java',
