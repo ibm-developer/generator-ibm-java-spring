@@ -13,19 +13,19 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 {{/mongodb}}
-{{#openApiServers}}
+{{#if openApiServers.length}}
 import org.springframework.context.annotation.ComponentScan;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-{{/openApiServers}}
+{{/if}}
 {{/bluemix}}
 
 @SpringBootApplication
 {{#bluemix}}
-{{#openApiServers}}
+{{#if openApiServers.length}}
 @EnableSwagger2
 @ComponentScan(basePackages = { "io.swagger", "application" })
-{{/openApiServers}}
+{{/if}}
 {{#mongodb}}
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 {{/mongodb}}
@@ -35,7 +35,7 @@ public class SBApplication {
     {{#if bluemix.server.services.length}}
     @Autowired
     ServiceMappings serviceMappings;
-	
+
     {{/if}}
     public static void main(String[] args) {
         SpringApplication.run(SBApplication.class, args);

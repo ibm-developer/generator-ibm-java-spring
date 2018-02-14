@@ -61,9 +61,11 @@ module.exports = class extends Generator {
       if (this.fs.exists(homeControllerPath)) {
         this.fs.delete(homeControllerPath)
       }
-      const springBootApplicationPath = this.destinationPath('src/main/java/io/swagger/Swagger2SpringBoot.java')
-      if (this.fs.exists(springBootApplicationPath)) {
-        this.fs.delete(springBootApplicationPath)
+      if(!(this.conf.createType == 'blank/spring')) {
+        const springBootApplicationPath = this.destinationPath('src/main/java/io/swagger/Swagger2SpringBoot.java')
+        if (this.fs.exists(springBootApplicationPath)) {
+          this.fs.delete(springBootApplicationPath)
+        }
       }
     }
     return this.defaultWriter(this);   //use the default writer supplied by the context.
