@@ -27,11 +27,11 @@ const PROP_FILE = 'src/main/resources/application.properties'
 
 function AssertOpenApi () {
   this.assert = function (exists, examples, buildType) {
-    this.assertHealthFiles(exists)
+    this.assertHealthFiles()
     this.assertCommon(exists, examples, buildType)
   }
 
-  this.assertHealthFiles = function (exists) {
+  this.assertHealthFiles = function () {
     it('check health endpoint file is generated', function () {
       assert.file('src/main/java/application/rest/HealthEndpoint.java')
     })
@@ -44,7 +44,7 @@ function AssertOpenApi () {
     const contentDesc = exists ? ' contains ' : ' does not contain '
     it(desc + 'core openapi files', function () {
       check([
-         'src/main/java/io/swagger/RFC3339DateFormat.java',
+        'src/main/java/io/swagger/RFC3339DateFormat.java',
         'src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java',
         'src/main/java/application/NotFoundException.java',
         'src/main/java/application/ApiResponseMessage.java',
