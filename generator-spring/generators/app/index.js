@@ -39,7 +39,7 @@ module.exports = class extends Generator {
 
   initializing() {
   }
-  
+
   prompting() {
     //this generator does not prompt, questions can be set in the prompts directory for testing purposes
   }
@@ -56,7 +56,17 @@ module.exports = class extends Generator {
 
   writing() {
     if(this.openApiDir.length > 0) {
-      OpenApi.writeFiles(this.openApiDir, this);
+      OpenApi.writeFiles(this.openApiDir, this)
+      const homeControllerPath = this.destinationPath('src/main/java/io/swagger/configuration/HomeController.java')
+      if (this.fs.exists(homeControllerPath)) {
+        this.fs.delete(homeControllerPath)
+      }
+      if(!(this.conf.createType == 'blank/spring')) {
+        const springBootApplicationPath = this.destinationPath('src/main/java/io/swagger/Swagger2SpringBoot.java')
+        if (this.fs.exists(springBootApplicationPath)) {
+          this.fs.delete(springBootApplicationPath)
+        }
+      }
     }
     return this.defaultWriter(this);   //use the default writer supplied by the context.
   }

@@ -13,12 +13,12 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT{{#if bluemix.openApiServers}}, classes=io.swagger.Swagger2SpringBoot.class{{/if}})
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class HealthEndpointTest {
 
     @Autowired
     private TestRestTemplate server;
-    
+
     @LocalServerPort
     private int port;
 

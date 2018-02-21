@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.1.1...v2.1.2) (2018-02-14)
+
+
+### Bug Fixes
+
+* Changes to make integration tests work ([9072b0e](https://github.com/ibm-developer/generator-ibm-java-spring/commit/9072b0e))
+* Fix test to always expect SBApplication ([20adae4](https://github.com/ibm-developer/generator-ibm-java-spring/commit/20adae4))
+* Lint error fix ([c511e8a](https://github.com/ibm-developer/generator-ibm-java-spring/commit/c511e8a))
+* Use Yeoman generated Spring Boot app for BFF ([9097086](https://github.com/ibm-developer/generator-ibm-java-spring/commit/9097086))
+
+
+
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.1.0...v2.1.1) (2018-02-09)
+
+
+### Bug Fixes
+
+* Delete swagger home controller so that common landing page can be displayed. ([674bbb5](https://github.com/ibm-developer/generator-ibm-java-spring/commit/674bbb5))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.0.1...v2.1.0) (2018-02-02)
 
