@@ -100,8 +100,8 @@ function AssertSpring () {
     const check = getCheck(exists)
     describe(check.desc + 'javametrics dependencies', function() {
       const depcheck = exists ? tests.test(buildType).assertDependency : tests.test(buildType).assertNoDependency
-      depcheck('compile', 'com.ibm.runtimetools', 'javametrics-agent', '1.1.0')
-      depcheck('compile', 'com.ibm.runtimetools', 'javametrics-spring', '1.1.0')
+      depcheck('compile', 'com.ibm.runtimetools', 'javametrics-agent')
+      depcheck('compile', 'com.ibm.runtimetools', 'javametrics-spring')
       depcheck('compile', 'org.glassfish', 'javax.json', '1.0.4')
     })
   }
