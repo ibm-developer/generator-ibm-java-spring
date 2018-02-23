@@ -90,6 +90,12 @@ Extension.prototype.getQuestions = function () {
     name: 'addbluemix',
     message: 'Add bluemix to your application?',
     default: false
+  }, {
+    when: this.show.bind(this),
+    type: 'confirm',
+    name: 'javametrics',
+    message: 'Enable java metrics for your project',
+    default: (answers) => {return answers.javametrics}
   }]
 }
 

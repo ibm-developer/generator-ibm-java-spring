@@ -17,6 +17,10 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+{{else}}
+{{#javametrics}}
+import org.springframework.context.annotation.ComponentScan;
+{{/javametrics}}
 {{/if}}
 {{/bluemix}}
 
@@ -24,7 +28,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 {{#bluemix}}
 {{#if openApiServers.length}}
 @EnableSwagger2
-@ComponentScan(basePackages = { "io.swagger", "application" })
+@ComponentScan(basePackages = { "io.swagger", "application" {{#javametrics}}, "com.ibm.javametrics.spring"{{/javametrics}} })
+{{else}}
+{{#javametrics}}
+@ComponentScan(basePackages = {"application", "com.ibm.javametrics.spring"})
+{{/javametrics}}
 {{/if}}
 {{#mongodb}}
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
