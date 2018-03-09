@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.1.2...v2.2.0) (2018-02-23)
+
+
+### Features
+
+* Add javametrics option ([f39dd95](https://github.com/ibm-developer/generator-ibm-java-spring/commit/f39dd95))
+
+
+
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.1.1...v2.1.2) (2018-02-14)
 
