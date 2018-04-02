@@ -25,6 +25,7 @@
     "mocha": "^3.2.0",
     "nyc": "^11.3.0",
     "standard-version": "^4.2.0",
+    "xunit-file": "^1.0.0",
     "yeoman-test": "^1.6.0"
   },
   "scripts": {
@@ -32,6 +33,7 @@
     "testint": "nyc mocha test/integration/*",
     "testspring": "nyc mocha test/integration/generator.spring.*",
     "testopenapi": "nyc mocha test/integration/generator.openapi.test.js",
+    "mocha": "nyc --reporter=lcov mocha --recursive -R xunit-file",
     "lint": "eslint .",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "prerelease": "npm test && npm run testint",
