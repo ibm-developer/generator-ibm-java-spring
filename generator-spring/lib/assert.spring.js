@@ -22,7 +22,7 @@
 const assert = require('yeoman-assert')
 const tests = require('ibm-java-codegen-common')
 
-const SPRING_VERSION = '1.5.4.RELEASE'   //current Spring version to check for
+const SPRING_VERSION = '1.5.15.RELEASE'   //current Spring version to check for
 const LOCAL_APP_PROPS = 'src/main/resources/application-local.properties'
 const APP_PROPS = 'src/main/resources/application.properties'
 const CONTENT_ROOT = 'src/main/resources/public'   //where public web content is served from
