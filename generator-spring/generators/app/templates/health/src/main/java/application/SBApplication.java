@@ -1,10 +1,5 @@
 package application;
 
-{{#if bluemix.server.services.length}}
-import application.ibmcloud.ServiceMappings;
-
-import org.springframework.beans.factory.annotation.Autowired;
-{{/if}}
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 {{#bluemix}}
@@ -40,11 +35,6 @@ import org.springframework.context.annotation.ComponentScan;
 {{/bluemix}}
 public class SBApplication {
 
-    {{#if bluemix.server.services.length}}
-    @Autowired
-    ServiceMappings serviceMappings;
-
-    {{/if}}
     public static void main(String[] args) {
         SpringApplication.run(SBApplication.class, args);
     }
