@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.1"></a>
+## [2.3.1](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.3.0...v2.3.1) (2018-09-14)
+
+
+### Bug Fixes
+
+* Don't generate ServiceMappings reference ([ab03b84](https://github.com/ibm-developer/generator-ibm-java-spring/commit/ab03b84))
+* typo ([071aaaf](https://github.com/ibm-developer/generator-ibm-java-spring/commit/071aaaf))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.2.4...v2.3.0) (2018-08-24)
 
