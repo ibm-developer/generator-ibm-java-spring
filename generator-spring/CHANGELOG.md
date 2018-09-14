@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.2.4...v2.3.0) (2018-08-24)
+
+
+### Bug Fixes
+
+* Update mocha@4, nyc@12, coveralls@3 ([400a11c](https://github.com/ibm-developer/generator-ibm-java-spring/commit/400a11c))
+
+
+### Features
+
+* Update spring-boot from 1.5.4 to 1.5.15 ([61a8ce5](https://github.com/ibm-developer/generator-ibm-java-spring/commit/61a8ce5))
+
+
+
+<a name="2.2.4"></a>
+## [2.2.4](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.2.3...v2.2.4) (2018-07-09)
+
+
+
 <a name="2.2.3"></a>
 ## [2.2.3](https://github.com/ibm-developer/generator-ibm-java-spring/compare/v2.2.1...v2.2.3) (2018-05-18)
 
