@@ -1,6 +1,6 @@
 {
   "name": "generator-ibm-java-spring",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Spring code generation and modification",
   "license": "Apache-2.0",
   "main": "index.js",
