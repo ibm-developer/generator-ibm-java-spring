@@ -2,23 +2,29 @@ language: java
 jdk:
   - oraclejdk8
 before_install:
-  - nvm install 6.9.1
-  - wget https://github.com/github/hub/releases/download/v2.2.9/hub-linux-386-2.2.9.tgz
-  - shasum -a 256 -c ./sha256.txt
-  - tar -xvzf hub-linux-386-2.2.9.tgz
-  - export PATH=$PWD/hub-linux-386-2.2.9/bin/:$PATH
   - nvm install 8.9.4
   - cd ./generator-spring
   - npm i -g makeshift && makeshift -r https://registry.npmjs.org
+  - npm i -g standard-version
 install:
   - npm install
+before_script:
+  - cd /tmp
+  - wget https://github.com/github/hub/releases/download/v2.5.1/hub-linux-386-2.5.1.tgz
+  - tar -xvzf hub-linux-386-2.5.1.tgz
+  - mv hub-linux-386-2.5.1 hub
+  - export PATH=$PATH:/tmp/hub/bin
+  - git clone -b master https://github.com/ibm-developer/standard-npm-devops.git
+  - cd $TRAVIS_BUILD_DIR/generator-java
 script:
   - npm run lint
   - npm test
   - npm run testint
   - npm run coveralls
-  - ../deploy.sh
+  - /tmp/standard-npm-devops/do_devops.sh
 branches:
   only:
-  - develop
   - master
+  - develop
+env:
+  - DEV_BRANCH=develop PROD_BRANCH=master DEVOPS_SCRIPT_DIR="/tmp/standard-npm-devops"
