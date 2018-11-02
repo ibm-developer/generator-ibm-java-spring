@@ -1,4 +1,9 @@
-# Yeoman generator for Spring code
+# This repository is deprecated. The Spring generator has been merged into the Java generator at: 
+### https://github.com/ibm-developer/generator-ibm-java/tree/develop/generator-java/generators/spring
+  
+<br/><br/>
+
+## Yeoman generator for Spring code
 
 [![IBM Cloud powered][img-cloud-powered]][url-cloud]
 [![Travis][img-travis]][url-travis]
